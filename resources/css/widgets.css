@@ -265,7 +265,6 @@ ul.mail-list {
 .contact-cover {
     height: 175px;
     width: 100%;
-    background-image: url(~img/pages/profile-coverbg.jpeg);
     background-size: cover;
     color: #FFF;
 }

@@ -6,6 +6,7 @@ use App\Events\PasswordResetEvent;
 use App\Events\RegisterUserEvent;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AuthAdminController extends Controller
@@ -50,12 +51,17 @@ class AuthAdminController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
         $credentials = request(['email', 'password']);
-        if (!$token = auth('api')->attempt($credentials)) {
+        if (!auth('admin')->attempt($credentials, $request->remember ?? false)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        /**
+         * @var \App\Models\Admin
+         */
+        $admin = auth('admin')->user();
+        $token = $admin->createToken('admin')->plainTextToken;
         return $this->respondWithToken($token);
     }
 
@@ -66,7 +72,7 @@ class AuthAdminController extends Controller
      */
     public function passwordReset()
     {
-        $user = User::where('email', request(['email']))->first();
+        $user = Admin::where('email', request(['email']))->first();
         if (is_null($user)) {
             return response()->json(['error' => 'No user exists'], 401);
         }
@@ -93,7 +99,7 @@ class AuthAdminController extends Controller
             ->first();
 
         if ($password_reset) {
-            User::where('email', $password_reset->email)->first()
+            Admin::where('email', $password_reset->email)->first()
                 ->update(['password' => bcrypt($request->get('password'))]);
             DB::table('password_resets')->where('token', $request->get('token'))->delete();
             return response()->json(['success' => 'success'], 200);
@@ -109,7 +115,7 @@ class AuthAdminController extends Controller
      */
     public function me()
     {
-        return response()->json(auth('api_admin')->user());
+        return response()->json(auth('admin')->user());
     }
 
     /**
@@ -119,7 +125,7 @@ class AuthAdminController extends Controller
      */
     public function logout()
     {
-        auth('api')->logout();
+        auth('admin')->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
 
@@ -130,7 +136,7 @@ class AuthAdminController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        return $this->respondWithToken(auth('admin')->refresh());
     }
 
     /**
@@ -146,14 +152,11 @@ class AuthAdminController extends Controller
             'access_token' => $token,
             'user' => $this->guard()->user(),
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
-
-
         ]);
     }
 
     public function guard()
     {
-        return \Auth::Guard('api');
+        return Auth::guard('admin');
     }
 }

@@ -1,44 +1,44 @@
 const menu_items = [{
     name: 'Dashboard',
-    link: '/',
+    link: '/admin/dashboard',
     icon: ' fa fa-home'
 }, {
     name: 'Trader Transfer',
-    link: '/trader_transfer',
+    link: '/admin/trader_transfer',
     icon: 'fa fa-desktop'
 }, {
     name: 'USDT Purchase',
-    link: '/usdt_purchase',
+    link: '/admin/usdt_purchase',
     icon: ' fa fa-address-book-o'
 },
 {
     name: 'Payout',
-    link: '/payout',
+    link: '/admin/payout',
     icon: ' fa fa-address-book-o'
 },
 {
     name: 'Loses',
-    link: '/loses',
+    link: '/admin/loses',
     icon: ' fa fa-address-book-o'
 },
 {
     name: 'India Payments',
-    link: '/india_payments',
+    link: '/admin/india_payments',
     icon: ' fa fa-address-book-o'
 },
 {
     name: 'Traders',
-    link: '/traders',
+    link: '/admin/traders',
     icon: ' fa fa-users'
 },
 {
     name: 'Beneficiarys',
-    link: '/beneficiarys',
+    link: '/admin/beneficiarys',
     icon: ' fa fa-users'
 },
 {
     name: 'Running Balances',
-    link: '/running_balances',
+    link: '/admin/running_balances',
     icon: ' fa fa-users'
 },
 ];

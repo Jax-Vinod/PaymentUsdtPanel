@@ -54,12 +54,11 @@
                                         </div>
                                         <input v-model="model.password" name="password" id="password" type="password"
                                                required placeholder="Password" class="form-control" minlength="4"
-                                               maxlength="10"/>
+                                               />
                                     </div>
                                         <field-messages name="password" show="$invalid && $submitted" class="text-danger">
                                             <div slot="required">Password is required</div>
                                             <div slot="minlength">Password should be atleast 4 characters long</div>
-                                            <div slot="maxlength">Password should be atmost 10 characters long</div>
                                         </field-messages>
 
                                 </validate>
@@ -117,8 +116,9 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
-                    ApiService.post('admin/login', this.model)
+                    ApiService.post('login', this.model)
                         .then(data => {
+                            console.log('user', data);
                             this.$store.dispatch('login', data);
                             this.show_error = false;
                         })
