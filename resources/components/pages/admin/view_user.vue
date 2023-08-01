@@ -36,7 +36,7 @@
     </div>
 </template>
 <script type="text/javascript">
-    import ApiService from "../../common/api.service";
+    import ApiService from "../../../common/api.service";
 
     export default {
         name: "add_user",

@@ -18,46 +18,46 @@
                                 <ul class="list-unstyled margin-none">
                                     <li class="rightsidebar-contact-wrapper">
                                         <a class="rightsidebar-contact" href="javascript:void(0)">
-                                            <img src="../../img/authors/avatar6.jpg" class="rounded-circle " alt="avatar-image"> Annette
+                                            <img src="../../img/authors/user.jpg" class="rounded-circle " alt="avatar-image"> Annette
                                             <i class="fa fa-comment float-right text-success" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li class="rightsidebar-contact-wrapper">
                                         <a class="rightsidebar-contact" href="javascript:void(0)">
-                                            <img src="../../img/authors/avatar.jpg" class="rounded-circle " alt="avatar-image"> Jordan
+                                            <img src="../../img/authors/user.jpg" class="rounded-circle " alt="avatar-image"> Jordan
                                             <i class="fa fa-comment float-right text-success" aria-hidden="true"></i>
 
                                         </a>
                                     </li>
                                     <li class="rightsidebar-contact-wrapper">
                                         <a class="rightsidebar-contact" href="javascript:void(0)">
-                                            <img src="../../img/authors/avatar2.jpg" class="rounded-circle" alt="avatar-image"> Stewart
+                                            <img src="../../img/authors/user.jpg" class="rounded-circle" alt="avatar-image"> Stewart
                                             <i class="fa fa-comment float-right text-secondary" aria-hidden="true"></i>
 
                                         </a>
                                     </li>
                                     <li class="rightsidebar-contact-wrapper">
                                         <a class="rightsidebar-contact" href="javascript:void(0)">
-                                            <img src="../../img/authors/avatar3.jpg" class="rounded-circle" alt="avatar-image"> Alfred
+                                            <img src="../../img/authors/user.jpg" class="rounded-circle" alt="avatar-image"> Alfred
                                             <i class="fa fa-comment float-right text-secondary" aria-hidden="true"></i>
 
                                         </a>
                                     </li>
                                     <li class="rightsidebar-contact-wrapper">
                                         <a class="rightsidebar-contact" href="javascript:void(0)">
-                                            <img src="../../img/authors/avatar4.jpg" class="rounded-circle" alt="avatar-image"> Eileen
+                                            <img src="../../img/authors/user.jpg" class="rounded-circle" alt="avatar-image"> Eileen
                                             <i class="fa fa-comment float-right text-secondary" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li class="rightsidebar-contact-wrapper">
                                         <a class="rightsidebar-contact" href="javascript:void(0)">
-                                            <img src="../../img/authors/avatar5.jpg" class="rounded-circle" alt="avatar-image"> Robert
+                                            <img src="../../img/authors/user.jpg" class="rounded-circle" alt="avatar-image"> Robert
                                             <i class="fa fa-comment float-right text-secondary" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li class="rightsidebar-contact-wrapper">
                                         <a class="rightsidebar-contact" href="javascript:void(0)">
-                                            <img src="../../img/authors/avatar7.jpg" class="rounded-circle" alt="avatar-image"> Cassandra
+                                            <img src="../../img/authors/user.jpg" class="rounded-circle" alt="avatar-image"> Cassandra
                                             <i class="fa fa-comment float-right text-secondary" aria-hidden="true"></i>
                                         </a>
                                     </li>

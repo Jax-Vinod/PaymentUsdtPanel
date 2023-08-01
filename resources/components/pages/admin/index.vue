@@ -79,7 +79,7 @@
                                 ullamcorper at diam.</P>
                         </div>
                         <div class="col-12  col-lg-3 col-sm-3 mt-3">
-                            <img src="~img/pages/gal4.jpg" alt="profile image" class="img-fluid">
+                            <img src="" alt="profile image" class="img-fluid">
                         </div>
                     </div>
                 </b-card>
@@ -199,7 +199,7 @@
                             <h5 class="ml-3 mb-4 head_color">Timeline</h5>
                             <div class="row">
                                 <div class="col-2">
-                                    <img src="~img/authors/avatar.jpg" alt="image missing"
+                                    <img src="~" alt="image missing"
                                          class="img-fluid rounded-circle">
                                 </div>
                                 <div class="col-10">
@@ -209,7 +209,7 @@
                                     </span>
                                 </div>
                                 <div class="col-2 mt-4 mb-2">
-                                    <img src="~img/authors/avatar1.jpg" alt="image missing"
+                                    <img src="" alt="image missing"
                                          class="img-fluid rounded-circle">
                                 </div>
                                 <div class="col-10 mt-4 mb-2">
@@ -220,7 +220,7 @@
                                     </span>
                                 </div>
                                 <div class="col-2 mt-4 mb-2">
-                                    <img src="~img/authors/avatar2.jpg" alt="image missing"
+                                    <img src="~" alt="image missing"
                                          class="img-fluid rounded-circle">
                                 </div>
                                 <div class="col-10 mt-4 mb-2">
@@ -231,7 +231,7 @@
                                     </span>
                                 </div>
                                 <div class="col-2 mt-4 mb-2">
-                                    <img src="~img/authors/avatar3.jpg" alt="image missing"
+                                    <img src="" alt="image missing"
                                          class="img-fluid rounded-circle">
                                 </div>
                                 <div class="col-10 mt-4 mb-2">
@@ -249,7 +249,7 @@
                         <b-card class="swiper-widget text-center">
                             <swiper :options="swiperOption" ref="swiper">
                                 <swiper-slide>
-                                    <img src="~img/pages/weathernew.jpg" alt="profile image" class="img-fluid mb-2">
+                                    <img src="" alt="profile image" class="img-fluid mb-2">
                                     <h5 class="user_color mt-4 mb-4">User 1</h5>
                                     <p>
                                         Morbi nisi elit, blandit sit amet tincidunt eget, ullamcorper at diam. Nunc
@@ -257,7 +257,7 @@
                                     </p>
                                 </swiper-slide>
                                 <swiper-slide>
-                                    <img src="~img/pages/headsset.jpg" alt="profile image" class="img-fluid mb-2">
+                                    <img src="" alt="profile image" class="img-fluid mb-2">
                                     <h5 class="user_color mt-4 mb-4">User 2</h5>
                                     <p>
                                         Morbi nisi elit, blandit sit amet tincidunt eget, ullamcorper at diam. Nunc
@@ -265,7 +265,7 @@
                                     </p>
                                 </swiper-slide>
                                 <swiper-slide>
-                                    <img src="~img/pages/gal4.jpg" alt="profile image" class="img-fluid mb-2">
+                                    <img src="" alt="profile image" class="img-fluid mb-2">
                                     <h5 class="user_color mt-4 mb-4">User 3</h5>
                                     <p>
                                         Morbi nisi elit, blandit sit amet tincidunt eget, ullamcorper at diam. Nunc
@@ -273,7 +273,7 @@
                                     </p>
                                 </swiper-slide>
                                 <swiper-slide>
-                                    <img src="~img/pages/gal10.jpg" alt="profile image" class="img-fluid mb-2">
+                                    <img src="" alt="profile image" class="img-fluid mb-2">
                                     <h5 class="user_color mt-4 mb-4">User 4</h5>
                                     <p>
                                         Morbi nisi elit, blandit sit amet tincidunt eget, ullamcorper at diam. Nunc
@@ -281,7 +281,7 @@
                                     </p>
                                 </swiper-slide>
                                 <swiper-slide>
-                                    <img src="~img/pages/gal4.jpg" alt="profile image" class="img-fluid ">
+                                    <img src="" alt="profile image" class="img-fluid ">
                                     <h5 class="user_color mt-4 mb-4">User 5</h5>
                                     <p>
                                         Morbi nisi elit, blandit sit amet tincidunt eget, ullamcorper at diam. Nunc
@@ -314,7 +314,7 @@
                                 <p>admin.roy9@example.com</p>
                             </div>
                             <span class="profile-img  text-center online_dot">
-                                <img src="~img/authors/avatar3.jpg" alt="profile image" class="img-fluid">
+                                <img src="" alt="profile image" class="img-fluid">
                             </span>
                             <div class="card-block dot back_color1">
                                 <div class="tweet-details1">
@@ -398,7 +398,7 @@
     import vScroll from "components/plugins/scroll/vScroll.vue";
     import portfolio from "components/widgets/portfolio/portfolio.vue"
     import VueChartist from 'v-chartist'
-    import ApiService from "../../common/api.service";
+    import ApiService from "../../../common/api.service";
 
 
     Vue.use(VueAwesomeSwiper);

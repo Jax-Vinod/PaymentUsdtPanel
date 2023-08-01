@@ -140,7 +140,7 @@
     import Vue from 'vue'
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
-    import ApiService from "../../common/api.service";
+    import ApiService from "../../../common/api.service";
 
     Vue.use(VueForm, options);
     export default {
@@ -166,7 +166,7 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
-                    ApiService.post('auth/register', this.model)
+                    ApiService.post('admin/register', this.model)
                         .then(data => {
                             this.show_error = false;
                             this.show_success = true;

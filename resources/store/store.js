@@ -20,7 +20,7 @@ const store = new Vuex.Store({
         page_title: null,
         user: {
             name: "Ayesha",
-            picture: require("img/authors/prf4.jpg"),
+            picture: require("img/authors/user.jpg"),
             job: "Project Manager"
         },
         cal_events: [{

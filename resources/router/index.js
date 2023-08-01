@@ -6,8 +6,10 @@ import store from '../store/store'
 Vue.use(VueRouter)
 
 const router = new VueRouter({
+    mode: 'history',
     routes,
-    linkActiveClass: "active"
+    linkActiveClass: "active",
+    // hashbang: false,
 })
 
 router.beforeEach((to, from, next) => {
@@ -18,10 +20,15 @@ router.beforeEach((to, from, next) => {
     } else if (document.documentElement) {
         document.documentElement.scrollTop = 0
     }
-    const publicPages = ['login', 'register', 'forgotpassword','reset_password_token'];
-    const authRequired = !publicPages.includes(to.name);
+    console.log(to.path);
+    const publicPages = ['/login', '/register', '/forgotpassword','/reset_password_token', '/admin/login', '/admin/register', '/admin/forgotpassword','/admin/reset_password_token'];
+    // const adminPublicPages = ['admin/login', 'admin/register', 'admin/forgotpassword','admin/reset_password_token','admin/login'];
+    const authRequired = !publicPages.includes(to.path);
     const loggedIn = localStorage.getItem('token');
     if (authRequired && !loggedIn) {
+        if (to.path.includes('admin')) {
+            return next('/admin/login');
+        } else
         return next('/login');
     }
     next()

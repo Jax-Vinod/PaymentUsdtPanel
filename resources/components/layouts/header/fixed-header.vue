@@ -33,7 +33,7 @@
                                     <b-dropdown-item exact>
                                         <div class="row">
                                             <div class="col-2 mt-2 ml-2">
-                                                <img class="rounded-circle" src="~img/authors/avatar1.jpg">
+                                                <img class="rounded-circle" src="">
                                             </div>
                                             <div class="col-9 mt-2">
                                                 <p> &nbsp;Lorem ipsum dolor sit amet, elit.
@@ -46,7 +46,7 @@
                                     <b-dropdown-item exact>
                                         <div class="row">
                                             <div class="col-2 mt-2 ml-2">
-                                                <img class="rounded-circle" src="~img/authors/avatar5.jpg">
+                                                <img class="rounded-circle" src="">
                                             </div>
                                             <div class="col-9 mt-2">
                                                 <p> &nbsp;Lorem ipsum dolor sit amet, elit.
@@ -59,7 +59,7 @@
                                     <b-dropdown-item exact>
                                         <div class="row">
                                             <div class="col-2 mt-2 ml-2">
-                                                <img class="rounded-circle" src="~img/authors/avatar3.jpg">
+                                                <img class="rounded-circle" src="">
                                             </div>
                                             <div class="col-9 mt-2">
                                                 <p> &nbsp;Lorem ipsum dolor sit amet, elit.
@@ -72,7 +72,7 @@
                                     <b-dropdown-item exact class="mt-2 notifications_data">
                                         <div class="row">
                                             <div class="col-2 mt-2 ml-2">
-                                                <img class="rounded-circle" src="~img/authors/avatar3.jpg">
+                                                <img class="rounded-circle" src="">
                                             </div>
                                             <div class="col-9 mt-2">
                                                 <p> &nbsp;Lorem ipsum dolor sit amet, elit.

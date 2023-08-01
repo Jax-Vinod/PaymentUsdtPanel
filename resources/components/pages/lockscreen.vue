@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-lg-12 col-12 mt-4">
                         <h3 class="page-name text-center">
-                            <img src="~img/pages/User-01.png" alt="user" class="rounded-circle img-thumbnail user-img">
+                            <img src="" alt="user" class="rounded-circle img-thumbnail user-img">
                         </h3>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
     }
 
     .img_backgrond {
-        background-image: url("../../img/pages/Login-03-01.png");
+
         background-size: cover;
         height: 100vh;
         background-repeat: no-repeat;

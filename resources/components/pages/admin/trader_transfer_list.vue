@@ -1,9 +1,9 @@
 <template>
-    <div class="row" id="user_list">
+    <div class="row" id="trader_transfer_list">
         <div class="col-lg-12">
             <b-card header="Basic Client Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="Registered Users" :rows="tableData" :columns="columndata">
+                    <datatable title="Trader Transfers" :rows="tableData" :columns="columndata">
                     </datatable>
                 </div>
             </b-card>
@@ -12,11 +12,11 @@
 </template>
 <script type="text/javascript">
     import datatable from "components/plugins/DataTable/DataTable.vue";
-    import ApiService from "../../common/api.service";
+    import ApiService from "../../../common/api.service";
 
     export default {
-        name: "users_list",
-        id: "user_list",
+        name: "trader_transfers_list",
+        id: "trader_transfer_list",
         components: {
             datatable
         },
@@ -31,16 +31,29 @@
                     numeric: true,
                     html: false,
                 }, {
-                    label: 'Name',
-                    field: 'name',
+                    label: 'Trader',
+                    field: 'trader',
                     numeric: false,
                     html: false,
                 }, {
-                    label: 'Email',
-                    field: 'email',
+                    label: 'Bank',
+                    field: 'bank',
                     numeric: false,
                     html: false,
-                }, {
+                },
+                {
+                    label: 'Amount',
+                    field: 'amount',
+                    numeric: false,
+                    html: false,
+                },
+                {
+                    label: 'Date',
+                    field: 'date',
+                    numeric: false,
+                    html: false,
+                },
+                 {
                     label: 'Actions',
                     field: 'action',
                     numeric: false,
@@ -51,8 +64,8 @@
         methods: {
         },
         mounted() {
-            ApiService.get('auth/user_list').then(response => {
-                this.tableData = response.data.users;
+            ApiService.get('trader_transfers_list').then(response => {
+                this.tableData = response.data.data;
                 this.tableData.forEach((item, index) => {
                     this.$set(item, "action",
                         "<a class='btn btn-info clickable' href='#/edit_user/" + item.id + "'>Edit</a> " +
@@ -66,7 +79,5 @@
 </script>
 
 <style type="text/css">
-    .democlass {
-        color: red;
-    }
+
 </style>

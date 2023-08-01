@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Events\PasswordResetEvent;
 use App\Events\RegisterUserEvent;
-use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AuthController extends Controller
+class AuthAdminController extends Controller
 {
 
     /**
@@ -36,7 +36,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
         ]);
-        User::create([
+        Admin::create([
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password'))
@@ -109,7 +109,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth('api')->user());
+        return response()->json(auth('api_admin')->user());
     }
 
     /**
@@ -121,17 +121,6 @@ class AuthController extends Controller
     {
         auth('api')->logout();
         return response()->json(['message' => 'Successfully logged out']);
-    }
-
-    /**
-     * user list
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function user_list()
-    {
-        $users = User::all();
-        return response()->json(['users' => $users]);
     }
 
     /**
@@ -162,60 +151,6 @@ class AuthController extends Controller
 
         ]);
     }
-
-    /**
-     * Make new user
-     */
-    public function addUser(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-        ]);
-        User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password'))
-        ]);
-        return response()->json(['success' => 'success'], 200);
-    }
-
-    /**
-     * Get user info
-     */
-    public function getUser($user_id)
-    {
-        $user = User::findOrFail($user_id);
-        return response()->json($user, 200);
-    }
-
-    /**
-     * Edit user info
-     */
-    public function editUser(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $request->get('user_id'),
-            'user_id' => 'required',
-        ]);
-        $user = User::findOrFail($request->get('user_id'));
-        $user->update([
-            'email' => $request->get('email'),
-            'name' => $request->get('name')
-        ]);
-        return response()->json(['success' => 'success'], 200);
-    }
-    /**
-     * Delete user
-     */
-    public function deleteUser($user_id)
-    {
-        User::findOrFail($user_id)->delete();
-        return redirect('/#/users_list');
-    }
-
 
     public function guard()
     {

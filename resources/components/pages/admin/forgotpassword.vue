@@ -53,7 +53,7 @@
     import Vue from 'vue'
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
-    import ApiService from "../../common/api.service";
+    import ApiService from "../../../common/api.service";
 
     Vue.use(VueForm, options);
     export default {

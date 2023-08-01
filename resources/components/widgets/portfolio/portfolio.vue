@@ -3,7 +3,7 @@
         <div class="card-block">
             <div class="row text-center">
                 <div class="col-12">
-                    <img src="~img/authors/avatar.jpg" alt="profile image" class="user-pic mt-3 mb-2">
+                    <img src="~" alt="profile image" class="user-pic mt-3 mb-2">
                     <h4 class="text_color">Arthur Riley</h4>
                 </div>
                 <div class="col-12 mt-2 text_color mt-2">

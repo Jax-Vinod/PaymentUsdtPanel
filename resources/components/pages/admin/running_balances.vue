@@ -12,7 +12,7 @@
 </template>
 <script type="text/javascript">
     import datatable from "components/plugins/DataTable/DataTable.vue";
-    import ApiService from "../../common/api.service";
+    import ApiService from "../../../common/api.service";
 
     export default {
         name: "users_list",

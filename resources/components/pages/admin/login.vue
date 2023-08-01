@@ -77,28 +77,12 @@
                             </validate>
                         </div>
 
-                        <div class="col-lg-6 text-right">
-                            <div class="form-group">
-                                <div class="login-text">
-                                <router-link tag="a" to="/forgotpassword" class="">Forgot Your Password ?</router-link></div>
-                            </div>
-                        </div>
-
                         <div class="col-lg-12 text-right">
                             <div class="form-group">
                                 <input type="submit" value="Sign In" class="btn btn-success btn-block"/>
                             </div>
                         </div>
                         <br>
-
-                        <div class="col-lg-12 text-left">
-                            <div class="form-group">
-                                <div class="login-text">
-                                New User?
-                                <router-link tag="a" to="/register" class="">Sign Up</router-link></div>
-                            </div>
-                        </div>
-
 
                     </div>
                 </vue-form>
@@ -112,7 +96,7 @@
 
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
-    import ApiService from "../../common/api.service";
+    import ApiService from "../../../common/api.service";
 
     Vue.use(VueForm, options);
     export default {
@@ -133,12 +117,12 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
-                    ApiService.post('auth/login', this.model)
+                    ApiService.post('admin/login', this.model)
                         .then(data => {
                             this.$store.dispatch('login', data);
                             this.show_error = false;
                         })
-                        .then(() => this.$router.push({name: "dashboard"}))
+                        .then(() => this.$router.push({name: "admin/dashboard"}))
                         .catch(error => {
                             this.show_error = true;
                         })

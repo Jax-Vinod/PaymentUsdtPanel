@@ -1,6 +1,6 @@
 let chat = [{
     user: "Rickey",
-    image: require("img/authors/avatar2.jpg"),
+    image: require(""),
     status: "Lorem ipsum dolor sit ametm  elit.",
     mbl_num:"9876543210",
     work:"Google",
@@ -163,7 +163,7 @@ let chat = [{
     }]
 }, {
     user: "Shasla",
-    image: require("img/authors/avatar.jpg"),
+    image: require(""),
     status: "Dolor ipsum dolor dolor elitLorem ",
     mbl_num:"7598642130",
     work:"IBM",
