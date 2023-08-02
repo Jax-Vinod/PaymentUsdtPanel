@@ -116,7 +116,7 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
-                    ApiService.post('login', this.model)
+                    ApiService.post('admin/api/login', this.model)
                         .then(data => {
                             console.log('user', data);
                             this.$store.dispatch('login', data);
