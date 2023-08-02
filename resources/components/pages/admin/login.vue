@@ -118,11 +118,11 @@
                 } else {
                     ApiService.post('admin/api/login', this.model)
                         .then(data => {
-                            console.log('user', data);
                             this.$store.dispatch('login', data);
                             this.show_error = false;
                         })
-                        .then(() => this.$router.push({name: "admin/dashboard"}))
+                        // .then(() => this.$router.push({name: "/admin/dashboard"}))
+                        .then(() => window.location.href = "/#/admin")
                         .catch(error => {
                             this.show_error = true;
                         })
