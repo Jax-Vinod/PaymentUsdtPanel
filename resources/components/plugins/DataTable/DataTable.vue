@@ -25,7 +25,7 @@
     import 'datatables.net-responsive-bs5';
     import JwtService from "resources/common/jwt.service";
     export default {
-        props: ['url', 'rows', 'columns'],
+        props: ['url', 'rows', 'columns', 'columnDefs'],
         data() {
             return {
                 table: null,
@@ -49,7 +49,8 @@
                 order: [
                     [0, 'desc']
                 ],
-                columns: this.columns
+                columns: this.columns,
+                columnDefs: this.columnDefs
             });
         }
     }

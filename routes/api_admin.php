@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AdminResource;
+use App\Http\Controllers\UserResource;
+use App\Http\Controllers\TraderResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +23,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('trader_transfers_list', 'ApiAdminController@trader_transfers_list');
-    Route::get('traders_list', 'ApiAdminController@traders_list');
     Route::get('usdt_purchases_list', 'ApiAdminController@usdt_purchases_list');
     Route::get('payouts_list', 'ApiAdminController@payouts_list');
     Route::get('notices_list', 'ApiAdminController@notices_list');
-    Route::get('agents_list', 'ApiAdminController@agents_list');
-    Route::get('admins_list', 'ApiAdminController@admins_list');
+
+    Route::resource('agents', UserResource::class);
+    Route::resource('admins', AdminResource::class);
+    Route::resource('traders', TraderResource::class);
 });
 
 Route::post('register', 'AuthController@register');

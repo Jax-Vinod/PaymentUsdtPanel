@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('password_crypt')->nullable(true);
-            $table->enum('role', ['superadmin', 'admin']);
+            $table->enum('role', ['admin', 'superadmin']);
             $table->boolean('is_active')->default(true);
             $table->rememberToken();
             $table->timestamps();

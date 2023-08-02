@@ -32,18 +32,45 @@ const menu_items = [{
 },
 {
     name: 'Traders',
-    link: '/admin/traders',
-    icon: ' fa fa-users'
+    icon: ' fa fa-users',
+    child: [{
+            name: 'Traders List',
+            link: '/admin/traders',
+            icon: 'fa fa-angle-double-right'
+        }, {
+            name: 'Add Trader',
+            link: '/admin/trader/add',
+            icon: 'fa fa-angle-double-right'
+        }
+    ]
 },
 {
     name: 'Agents',
-    link: '/admin/agents',
-    icon: ' fa fa-users'
+    icon: ' fa fa-users',
+    child: [{
+            name: 'Agents List',
+            link: '/admin/agents',
+            icon: 'fa fa-angle-double-right'
+        }, {
+            name: 'Add Agent',
+            link: '/admin/agent/add',
+            icon: 'fa fa-angle-double-right'
+        }
+    ]
 },
 {
     name: 'Admins',
-    link: '/admin/admins',
-    icon: ' fa fa-users'
+    icon: ' fa fa-users',
+    child: [{
+            name: 'Admins List',
+            link: '/admin/admins',
+            icon: 'fa fa-angle-double-right'
+        }, {
+            name: 'Add Admin',
+            link: '/admin/admin/add',
+            icon: 'fa fa-angle-double-right'
+        }
+    ]
 },
 {
     name: 'Beneficiarys',

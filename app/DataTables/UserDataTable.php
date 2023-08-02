@@ -19,7 +19,11 @@ class UserDataTable
         $datatable = DataTables::of($data)
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
-        });
+        })
+        ->addColumn('action', function ($user) {
+            return '';
+        })
+        ->rawColumns(['action']);
 
         return $datatable->make(true);
     }
@@ -36,6 +40,10 @@ class UserDataTable
         ->editColumn('password_crypt', function ($user) {
             return $user->password_crypt ? Crypt::decryptString($user->password_crypt) : '';
         })
+        ->addColumn('action', function ($user) {
+            return '';
+        })
+        ->rawColumns(['action'])
         ->removeColumn(['password']);
 
         return $datatable->make(true);
@@ -53,6 +61,10 @@ class UserDataTable
         ->editColumn('password_crypt', function ($user) {
             return $user->password_crypt ? Crypt::decryptString($user->password_crypt) : '';
         })
+        ->addColumn('action', function ($user) {
+            return '';
+        })
+        ->rawColumns(['action'])
         ->removeColumn(['password']);
 
         return $datatable->make(true);

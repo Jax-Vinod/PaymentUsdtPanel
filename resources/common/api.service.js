@@ -6,7 +6,7 @@ import JwtService from "./jwt.service";
 const ApiService = {
     init() {
         Vue.use(VueAxios, axios);
-        Vue.axios.defaults.baseURL = 'api/';
+        // Vue.axios.defaults.baseURL = 'api/';
         Vue.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     },
 
