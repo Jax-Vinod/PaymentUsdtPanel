@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <b-card header="Payouts Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="Payouts" :rows="tableData" :columns="columndata" url="admin/api/payouts_list">
+                    <datatable title="Payouts" :rows="tableData" :columns="columndata" url="admin/api/payouts">
                     </datatable>
                 </div>
             </b-card>

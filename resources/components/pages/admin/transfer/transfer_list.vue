@@ -1,9 +1,9 @@
 <template>
     <div class="row" id="trader_transfer_list">
         <div class="col-lg-12">
-            <b-card header="Trader Transfers Table" header-tag="h4" class="bg-primary-card">
+            <b-card header="Transfers Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="Trader Transfers" :rows="tableData" :columns="columndata" url="admin/api/trader_transfers_list">
+                    <datatable title="Transfers" :rows="tableData" :columns="columndata" url="admin/api/transfers">
                     </datatable>
                 </div>
             </b-card>
@@ -27,7 +27,8 @@
                     {data: 'trader', name: 'trader', sortable: false},
                     {data: 'amount', name: 'amount', sortable: true},
                     {data: 'bank', name: 'bank', sortable: false},
-                ]
+                ],
+                columnDefs: []
             }
         },
         methods: {

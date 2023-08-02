@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <b-card header="USDT Purchase Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="USDT Purchase" :rows="tableData" :columns="columndata" url="admin/api/usdt_purchases_list">
+                    <datatable title="USDT Purchase" :rows="tableData" :columns="columndata" url="admin/api/usdt_purchases">
                     </datatable>
                 </div>
             </b-card>

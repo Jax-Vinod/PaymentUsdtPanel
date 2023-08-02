@@ -10,6 +10,7 @@ class TraderTransfer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'admin_id',
         'trader_id',
         'amount',
         'bank_id'
@@ -19,11 +20,11 @@ class TraderTransfer extends Model
 
     public function bank()
     {
-        return $this->hasOne('App\Models\Bank');
+        return $this->belongsTo('App\Models\Bank');
     }
 
     public function trader()
     {
-        return $this->hasOne('App\Models\Trader');
+        return $this->belongsTo('App\Models\Trader');
     }
 }

@@ -7,9 +7,18 @@ const menu_items = [{
     link: '/admin/notice',
     icon: 'fa fa-desktop'
 }, {
-    name: 'Trader Transfer',
-    link: '/admin/trader_transfer',
-    icon: 'fa fa-desktop'
+    name: 'Transfer',
+    icon: 'fa fa-desktop',
+    child: [{
+            name: 'Transfers List',
+            link: '/admin/transfers',
+            icon: 'fa fa-angle-double-right'
+        }, {
+            name: 'New Transfer',
+            link: '/admin/transfer/new',
+            icon: 'fa fa-angle-double-right'
+        }
+    ]
 }, {
     name: 'USDT Purchase',
     link: '/admin/usdt_purchase',
@@ -29,6 +38,20 @@ const menu_items = [{
     name: 'India Payments',
     link: '/admin/india_payments',
     icon: ' fa fa-address-book-o'
+},
+{
+    name: 'Banks',
+    icon: ' fa fa-bank',
+    child: [{
+            name: 'Banks List',
+            link: '/admin/banks',
+            icon: 'fa fa-angle-double-right'
+        }, {
+            name: 'Add Bank',
+            link: '/admin/bank/add',
+            icon: 'fa fa-angle-double-right'
+        }
+    ]
 },
 {
     name: 'Traders',

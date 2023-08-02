@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UserDataTable;
-use App\Models\Trader;
+use App\DataTables\BankDataTable;
+use App\Models\Bank;
 use Illuminate\Http\Request;
 
-class TraderResource extends Controller
+class BankResource extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,27 +18,27 @@ class TraderResource extends Controller
     }
 
     /**
-     * @param UserDataTable $datatable
+     * @param BankDataTable $datatable
      *
      * @return Yajra\DataTables\DataTables
      */
-    public function index(Request $request, UserDataTable $datatable)
+    public function index(Request $request, BankDataTable $datatable)
     {
-        return $datatable->traders($request);
+        return $datatable->render($request);
     }
 
     /**
-     * Return Trader detail by id.
+     * Return Bank detail by id.
      *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return response()->json(Trader::find($id));
+        return response()->json(Bank::find($id));
     }
 
     /**
-     * Store a newly created Trader in storage.
+     * Store a newly created Bank in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -46,15 +46,13 @@ class TraderResource extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'email' => ['required', 'email', 'unique:traders,email'],
-            'name' => ['required'],
-            'phone' => ['required'],
-            'upi' => ['required'],
+            'beneficiary_name' => ['required'],
+            'bank_name' => ['required'],
         ]);
 
         $data = $request->all();
 
-        Trader::create($data);
+        Bank::create($data);
         return response()->json(['message' => 'Created successfully']);
     }
 
@@ -62,35 +60,33 @@ class TraderResource extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Trader  $trader
+     * @param  \App\Models\Bank  $Bank
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'email' => 'required|email|unique:traders,email,' . $id,
-            'name' => ['required'],
-            'phone' => ['required'],
-            'upi' => ['required'],
+            'beneficiary_name' => ['required'],
+            'bank_name' => ['required'],
         ]);
 
-        $trader = Trader::find($id);
+        $bank = Bank::find($id);
 
         $data = $request->all();
 
-        $trader->update($data);
+        $bank->update($data);
         return response()->json(['message' => 'Updated successfully']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Trader  $Trader
+     * @param  \App\Models\Bank  $Bank
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Trader::find($id)->delete();
-        return redirect('/#/admin/traders');
+        Bank::find($id)->delete();
+        return redirect('/#/admin/banks');
     }
 }

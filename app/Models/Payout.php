@@ -20,11 +20,11 @@ class Payout extends Model
 
     public function bank()
     {
-        return $this->hasOne('App\Models\Bank');
+        return $this->belongsTo('App\Models\Bank');
     }
 
     public function admin()
     {
-        return $this->hasOne('App\Models\Admin');
+        return $this->belongsTo('App\Models\Admin');
     }
 }

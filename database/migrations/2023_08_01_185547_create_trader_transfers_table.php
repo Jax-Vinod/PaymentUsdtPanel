@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('trader_transfers', function (Blueprint $table) {
             $table->id();
+            $table->integer('admin_id');
             $table->integer('trader_id');
             $table->string('amount');
             $table->integer('bank_id');

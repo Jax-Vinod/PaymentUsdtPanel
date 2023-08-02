@@ -8,6 +8,7 @@ use App\DataTables\UsdtPurchaseDataTable;
 use App\DataTables\PayoutDataTable;
 use App\DataTables\NoticeDataTable;
 use App\Models\Admin;
+use App\Models\TraderTransfer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,9 +26,27 @@ class ApiAdminController extends Controller
         $this->middleware('auth:sanctum');
     }
 
-    public function trader_transfers_list(Request $request, TraderTransferDataTable $table)
+    public function transfers_list(Request $request, TraderTransferDataTable $table)
     {
         return $table->render($request);
+    }
+
+    public function createTransfer(Request $request)
+    {
+        $this->validate($request, [
+            'amount' => ['required'],
+            'trader_id' => ['required'],
+            'bank_id' => ['required'],
+        ]);
+
+        $data = $request->all();
+        $data['admin_id'] = $request->user()->id;
+
+        TraderTransfer::create($data);
+
+        // return response()->json(['message' => 'Created successfully']);
+        return redirect('/#/admin/transfer/new');
+
     }
 
     public function usdt_purchases_list(Request $request, UsdtPurchaseDataTable $table)

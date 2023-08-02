@@ -19,11 +19,11 @@ class Notice extends Model
 
     public function trader()
     {
-        return $this->hasOne('App\Models\Trader');
+        return $this->belongsTo('App\Models\Trader');
     }
 
     public function agent()
     {
-        return $this->hasOne('App\Models\Agent');
+        return $this->belongsTo('App\Models\Agent');
     }
 }

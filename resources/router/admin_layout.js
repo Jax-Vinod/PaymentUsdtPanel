@@ -7,15 +7,21 @@ const layout = [{
     }
 }, {
     path: 'notice',
-    component: resolve => require(['pages/admin/trader_transfer_list'], resolve),
+    component: resolve => require(['pages/admin/notice_list'], resolve),
     meta: {
-        title: "Trader Transfer",
+        title: "Notice",
     }
 }, {
-    path: 'trader_transfer',
-    component: resolve => require(['pages/admin/trader_transfer_list'], resolve),
+    path: 'transfers',
+    component: resolve => require(['pages/admin/transfer/transfer_list'], resolve),
     meta: {
-        title: "Trader Transfer",
+        title: "Transfer",
+    }
+}, {
+    path: 'transfer/new',
+    component: resolve => require(['pages/admin/transfer/new_transfer'], resolve),
+    meta: {
+        title: "Transfer",
     }
 }, {
     path: 'usdt_purchase',
@@ -95,6 +101,24 @@ const layout = [{
     component: resolve => require(['pages/admin/admin/edit_admin'], resolve),
     meta: {
         title: "Edit Admin",
+    }
+}, {
+    path: 'banks',
+    component: resolve => require(['pages/admin/bank/bank_list'], resolve),
+    meta: {
+        title: "Banks",
+    }
+}, {
+    path: 'bank/add',
+    component: resolve => require(['pages/admin/bank/add_bank'], resolve),
+    meta: {
+        title: "Add Bank",
+    }
+}, {
+    path: 'bank/edit/:bank_id',
+    component: resolve => require(['pages/admin/bank/edit_bank'], resolve),
+    meta: {
+        title: "Edit Bank",
     }
 }, {
     path: 'beneficiarys',

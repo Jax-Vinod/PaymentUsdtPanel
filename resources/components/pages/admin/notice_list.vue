@@ -3,7 +3,7 @@
         <div class="col-lg-12">
             <b-card header="notices Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="notices" :rows="tableData" :columns="columndata" url="admin/api/notices_list">
+                    <datatable title="notices" :rows="tableData" :columns="columndata" url="admin/api/notices">
                     </datatable>
                 </div>
             </b-card>
