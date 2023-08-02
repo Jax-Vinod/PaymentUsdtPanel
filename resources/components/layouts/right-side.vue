@@ -40,7 +40,7 @@ export default {
         line-height: 1.5;
     }
     .content-header {
-        margin: -2px -20px 25px -20px;
+        margin: -2px -20px 25px 0px;
         height: 55px;
         background: #f9fafb ;
         box-shadow: 3px 1px 5px #ccc;

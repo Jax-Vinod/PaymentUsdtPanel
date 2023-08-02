@@ -1,9 +1,15 @@
 const layout = [{
-    path: 'dashbaord',
+    path: 'dashboard',
     name: 'dashboard',
     component: resolve => require(['pages/admin/index'], resolve),
     meta: {
         title: "Dashboard",
+    }
+}, {
+    path: 'notice',
+    component: resolve => require(['pages/admin/trader_transfer_list'], resolve),
+    meta: {
+        title: "Trader Transfer",
     }
 }, {
     path: 'trader_transfer',
@@ -41,6 +47,18 @@ const layout = [{
     component: resolve => require(['pages/admin/traders_list'], resolve),
     meta: {
         title: "Traders",
+    }
+}, {
+    path: 'agents',
+    component: resolve => require(['pages/admin/agent_list'], resolve),
+    meta: {
+        title: "Agents",
+    }
+}, {
+    path: 'admins',
+    component: resolve => require(['pages/admin/admin_list'], resolve),
+    meta: {
+        title: "Admins",
     }
 }, {
     path: 'beneficiarys',

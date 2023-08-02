@@ -50,17 +50,9 @@
     </div>
 </template>
 <script>
-    import Vue from 'vue';
-
-    import 'zrender/lib/vml/vml';
-
-    require('swiper/dist/css/swiper.css')
-
-    Vue.use(VueAwesomeSwiper);
     export default {
         name: "index2",
     }
 </script>
 <!-- styles -->
 <!-- adding scoped attribute will apply the css to this component only -->
-<style src="chartist/dist/chartist.css"></style>

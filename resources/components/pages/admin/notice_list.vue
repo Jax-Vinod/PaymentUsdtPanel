@@ -1,9 +1,9 @@
 <template>
-    <div class="row" id="payouts_list">
+    <div class="row" id="notices_list">
         <div class="col-lg-12">
-            <b-card header="Payouts Table" header-tag="h4" class="bg-primary-card">
+            <b-card header="notices Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="Payouts" :rows="tableData" :columns="columndata" url="admin/api/payouts_list">
+                    <datatable title="notices" :rows="tableData" :columns="columndata" url="admin/api/notices_list">
                     </datatable>
                 </div>
             </b-card>
@@ -14,19 +14,18 @@
     import datatable from "components/plugins/DataTable/DataTable.vue";
 
     export default {
-        name: "payouts_list",
-        id: "payouts_list",
+        name: "notices_list",
+        id: "notices_list",
         components: {
             datatable
         },
         data() {
             return {
-                tableData: ['Date', 'Manager', 'Amount', 'Bank', 'Document'],
+                tableData: ['Date', 'Agent', 'Trader', 'Document'],
                 columndata: [
                     {data: 'created_at', name: 'created_at', sortable: true},
-                    {data: 'admin', name: 'admin', sortable: false},
-                    {data: 'amount', name: 'amount', sortable: true},
-                    {data: 'bank', name: 'bank', sortable: false},
+                    {data: 'agent', name: 'agent', sortable: false},
+                    {data: 'trader', name: 'trader', sortable: false},
                     {data: 'document', name: 'document', sortable: false},
                 ]
             }

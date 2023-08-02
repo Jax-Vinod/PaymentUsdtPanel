@@ -3,6 +3,10 @@ const menu_items = [{
     link: '/admin/dashboard',
     icon: ' fa fa-home'
 }, {
+    name: 'Notice',
+    link: '/admin/notice',
+    icon: 'fa fa-desktop'
+}, {
     name: 'Trader Transfer',
     link: '/admin/trader_transfer',
     icon: 'fa fa-desktop'

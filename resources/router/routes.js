@@ -7,7 +7,7 @@ const routes = [
         component: resolve => require(['src/layout'], resolve),
         children: user_layout_routes
     }, {
-        path: '/admin/',
+        path: '/admin',
         component: resolve => require(['src/layout'], resolve),
         children: admin_layout_routes
     }, {

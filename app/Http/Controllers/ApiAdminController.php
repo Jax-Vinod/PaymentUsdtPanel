@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\TraderTransferDataTable;
+use App\DataTables\UserDataTable;
+use App\DataTables\UsdtPurchaseDataTable;
+use App\DataTables\PayoutDataTable;
+use App\DataTables\NoticeDataTable;
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApiAdminController extends Controller
 {
@@ -16,18 +22,42 @@ class ApiAdminController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:sanctum');
     }
 
-    /**
-     * user list
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function user_list()
+    public function trader_transfers_list(Request $request, TraderTransferDataTable $table)
     {
-        $users = Admin::all();
-        return response()->json(['users' => $users]);
+        return $table->render($request);
+    }
+
+    public function traders_list(Request $request, UserDataTable $table)
+    {
+        return $table->traders($request);
+    }
+
+    public function agents_list(Request $request, UserDataTable $table)
+    {
+        return $table->agents($request);
+    }
+
+    public function admins_list(Request $request, UserDataTable $table)
+    {
+        return $table->admins($request);
+    }
+
+    public function usdt_purchases_list(Request $request, UsdtPurchaseDataTable $table)
+    {
+        return $table->render($request);
+    }
+
+    public function payouts_list(Request $request, PayoutDataTable $table)
+    {
+        return $table->render($request);
+    }
+
+    public function notices_list(Request $request, NoticeDataTable $table)
+    {
+        return $table->render($request);
     }
 
     /**
@@ -86,6 +116,6 @@ class ApiAdminController extends Controller
 
     public function guard()
     {
-        return \Auth::Guard('api');
+        return Auth::guard('admin');
     }
 }

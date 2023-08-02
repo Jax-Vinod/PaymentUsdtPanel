@@ -18,6 +18,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('trader_transfers_list', 'ApiAdminController@trader_transfers_list');
+    Route::get('traders_list', 'ApiAdminController@traders_list');
+    Route::get('usdt_purchases_list', 'ApiAdminController@usdt_purchases_list');
+    Route::get('payouts_list', 'ApiAdminController@payouts_list');
+    Route::get('notices_list', 'ApiAdminController@notices_list');
+    Route::get('agents_list', 'ApiAdminController@agents_list');
+    Route::get('admins_list', 'ApiAdminController@admins_list');
+});
+
 Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthAdminController@login')->name('admin.login');
 

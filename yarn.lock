@@ -1408,11 +1408,6 @@
   "resolved" "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
   "version" "1.5.1"
 
-"batch-processor@1.0.0":
-  "integrity" "sha512-xoLQD8gmmR32MeuBHgH0Tzd5PuSZx71ZsbhVxOCRbgktZEPe4SQy7s9Z50uPp0F/f7iw2XmkHN2xkgbMfckMDA=="
-  "resolved" "https://registry.npmjs.org/batch-processor/-/batch-processor-1.0.0.tgz"
-  "version" "1.0.0"
-
 "batch@0.6.1":
   "integrity" "sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw=="
   "resolved" "https://registry.npmjs.org/batch/-/batch-0.6.1.tgz"
@@ -1821,11 +1816,6 @@
   "integrity" "sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA=="
   "resolved" "https://registry.npmjs.org/charenc/-/charenc-0.0.2.tgz"
   "version" "0.0.2"
-
-"chartist@^0.10.1", "chartist@^0.11.0":
-  "integrity" "sha512-H4AimxaUD738/u9Mq8t27J4lh6STsLi4BQHt65nOtpLk3xyrBPaLiLMrHw7/WV9CmsjGA02WihjuL5qpSagLYw=="
-  "resolved" "https://registry.npmjs.org/chartist/-/chartist-0.11.4.tgz"
-  "version" "0.11.4"
 
 "checkbox.css@^1.1.3":
   "integrity" "sha512-t7yOSr9tyWJu7BT7OcWWxvYJlnrLZhbQ52eKyqbl/RdFrSlSXnAZCS0Qy78vnpTP8x/Br46I4h0bU1jLEhXdSg=="
@@ -2495,6 +2485,80 @@
     "es5-ext" "^0.10.50"
     "type" "^1.0.1"
 
+"datatables.net-bs5@^1.13.6", "datatables.net-bs5@>=1.13.4":
+  "integrity" "sha512-lXroZoXhLhDulp8gvU7y7wBherg38SbLMGXcHwbnj+XXh4Hvy+d67zSPYbrVI3YiRwYq+aCx15G5qmMj7KjYQg=="
+  "resolved" "https://registry.npmjs.org/datatables.net-bs5/-/datatables.net-bs5-1.13.6.tgz"
+  "version" "1.13.6"
+  dependencies:
+    "datatables.net" ">=1.13.4"
+    "jquery" ">=1.7"
+
+"datatables.net-buttons-dt@^2.4.1":
+  "integrity" "sha512-Pt/X+WS/20fOYU8/U8s2y5XF8LeJO+YvMnKkTEFIX1Pd/m680eBVcBjfIxBxRvLekPVD/nkRznXEh2Hx4uV14A=="
+  "resolved" "https://registry.npmjs.org/datatables.net-buttons-dt/-/datatables.net-buttons-dt-2.4.1.tgz"
+  "version" "2.4.1"
+  dependencies:
+    "datatables.net-buttons" ">=2.3.6"
+    "datatables.net-dt" ">=1.13.4"
+    "jquery" ">=1.7"
+
+"datatables.net-buttons@>=2.3.6":
+  "integrity" "sha512-Z788xsbGW+YqJWgQYCzE5IsbY8MNIihhDP/LOefijEn7MM1/jf4sQdf/KRNHr/CWTFGfojGPz+GNdJh8appeQQ=="
+  "resolved" "https://registry.npmjs.org/datatables.net-buttons/-/datatables.net-buttons-2.4.1.tgz"
+  "version" "2.4.1"
+  dependencies:
+    "datatables.net" ">=1.13.4"
+    "jquery" ">=1.7"
+
+"datatables.net-dt@^1.13.6", "datatables.net-dt@>=1.13.4":
+  "integrity" "sha512-0fBsUi8k5e+x5e+xA/Eb5stFr2PIkHgDnbhZs8ZDLvzzL975lCm6sqBAcsTsXKvF7yuBvaDTVBTF4wOMw7PrYw=="
+  "resolved" "https://registry.npmjs.org/datatables.net-dt/-/datatables.net-dt-1.13.6.tgz"
+  "version" "1.13.6"
+  dependencies:
+    "datatables.net" ">=1.13.4"
+    "jquery" ">=1.7"
+
+"datatables.net-jqui@^1.13.6":
+  "integrity" "sha512-bd2UjGj13v1uofdMslXA+X/6IQqxp/K0up/gAkn3fI1aJqBTigDQo3lG1J/MS3VBV1N0eZSajKFfpzKOLdh/dg=="
+  "resolved" "https://registry.npmjs.org/datatables.net-jqui/-/datatables.net-jqui-1.13.6.tgz"
+  "version" "1.13.6"
+  dependencies:
+    "datatables.net" ">=1.13.4"
+    "jquery" ">=1.7"
+
+"datatables.net-responsive-bs5@^2.5.0":
+  "integrity" "sha512-GklXpvBKOal11chL9l8RiQsvKYEZwxKA50pgwlkrbxrmRmqMH7+sMvLSE42QQCa5E5fWqtYsYdTY+SNkHfa+qA=="
+  "resolved" "https://registry.npmjs.org/datatables.net-responsive-bs5/-/datatables.net-responsive-bs5-2.5.0.tgz"
+  "version" "2.5.0"
+  dependencies:
+    "datatables.net-bs5" ">=1.13.4"
+    "datatables.net-responsive" ">=2.4.1"
+    "jquery" ">=1.7"
+
+"datatables.net-responsive-dt@^2.5.0":
+  "integrity" "sha512-u0oHqG1LLrFj+cBVYpyOO03nECUJJim4EovKhdQtB2g8X0fbH7jWvLAOdDFvyIzktCYWScObqR8uUEtm6J9O6Q=="
+  "resolved" "https://registry.npmjs.org/datatables.net-responsive-dt/-/datatables.net-responsive-dt-2.5.0.tgz"
+  "version" "2.5.0"
+  dependencies:
+    "datatables.net-dt" ">=1.13.4"
+    "datatables.net-responsive" ">=2.4.1"
+    "jquery" ">=1.7"
+
+"datatables.net-responsive@>=2.4.1":
+  "integrity" "sha512-GL7DFiRl5qqrp5ql54Psz92xTGPR0rMcrO3hzNxMfvcfpRGL5zFNTvMpTUh59Erm6u1+KoX+j+Ig1ZD3r0iFsA=="
+  "resolved" "https://registry.npmjs.org/datatables.net-responsive/-/datatables.net-responsive-2.5.0.tgz"
+  "version" "2.5.0"
+  dependencies:
+    "datatables.net" ">=1.13.4"
+    "jquery" ">=1.7"
+
+"datatables.net@>=1.13.4":
+  "integrity" "sha512-rHNcnW+yEP9me82/KmRcid5eKrqPqW3+I/p1TwqCW3c/7GRYYkDyF6aJQOQ9DNS/pw+nyr4BVpjyJ3yoZXiFPg=="
+  "resolved" "https://registry.npmjs.org/datatables.net/-/datatables.net-1.13.6.tgz"
+  "version" "1.13.6"
+  dependencies:
+    "jquery" ">=1.7"
+
 "de-indent@^1.0.2":
   "integrity" "sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg=="
   "resolved" "https://registry.npmjs.org/de-indent/-/de-indent-1.0.2.tgz"
@@ -2787,18 +2851,6 @@
     "readable-stream" "^2.0.0"
     "stream-shift" "^1.0.0"
 
-"easy-pie-chart@^2.1.7":
-  "integrity" "sha512-kf2n24kRO1/YYxGFZ5ueKjkgriLd7gq18HUj4PVmnbENW19xT/EcW3Q2X9HIlloVeEssgF2JDW+I0rzcTMofeQ=="
-  "resolved" "https://registry.npmjs.org/easy-pie-chart/-/easy-pie-chart-2.1.7.tgz"
-  "version" "2.1.7"
-
-"echarts@*", "echarts@3.8.5":
-  "integrity" "sha512-E+nnROMfCeiLeoT/fZyX8SE8mKzwkTjyemyoBF543oqjRtjTSKQAVDEihMXy4oC6pJS0tYGdMqCA2ATk8onyRg=="
-  "resolved" "https://registry.npmjs.org/echarts/-/echarts-3.8.5.tgz"
-  "version" "3.8.5"
-  dependencies:
-    "zrender" "3.7.4"
-
 "ee-first@1.1.1":
   "integrity" "sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow=="
   "resolved" "https://registry.npmjs.org/ee-first/-/ee-first-1.1.1.tgz"
@@ -2808,13 +2860,6 @@
   "integrity" "sha512-shUVy6Eawp33dFBFIoYbIwLHrX0IZ857AlH9ug2o4rvbWmpaCUdBpQ5Zw39HRrfzAFm4APJE9V+E2A/WB0YqJw=="
   "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.477.tgz"
   "version" "1.4.477"
-
-"element-resize-detector@latest":
-  "integrity" "sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg=="
-  "resolved" "https://registry.npmjs.org/element-resize-detector/-/element-resize-detector-1.2.4.tgz"
-  "version" "1.2.4"
-  dependencies:
-    "batch-processor" "1.0.0"
 
 "elliptic@^6.5.3":
   "integrity" "sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ=="
@@ -4492,10 +4537,10 @@
   dependencies:
     "jquery" "*"
 
-"jquery@*", "jquery@1.9.1 - 3":
-  "integrity" "sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ=="
-  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.7.0.tgz"
-  "version" "3.7.0"
+"jquery@*", "jquery@^3.5.0", "jquery@>=1.7", "jquery@1.9.1 - 3":
+  "integrity" "sha512-Xb7SVYMvygPxbFMpTFQiHh1J7HClEaThguL15N/Gg37Lri/qKyhRGZYzHRyLH8Stq3Aow0LsHO2O2ci86fCrNQ=="
+  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.5.0.tgz"
+  "version" "3.5.0"
 
 "js-tokens@^3.0.0 || ^4.0.0", "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
@@ -4732,7 +4777,7 @@
   "resolved" "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   "version" "4.5.0"
 
-"lodash@^4.13.1", "lodash@^4.17.11", "lodash@^4.17.13", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.5", "lodash@latest":
+"lodash@^4.13.1", "lodash@^4.17.11", "lodash@^4.17.13", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.5":
   "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
   "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
@@ -7589,11 +7634,6 @@
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   "version" "8.3.2"
 
-"v-chartist@^0.1.6":
-  "integrity" "sha512-VuVroSPbCoiFxeUtZFNj50dghw6ygTxqwIbPcpOx+O/INMql1JU3zl/eyDxNnWJsYtIS8kltQGpndOxQK5KumQ=="
-  "resolved" "https://registry.npmjs.org/v-chartist/-/v-chartist-0.1.6.tgz"
-  "version" "0.1.6"
-
 "v8-compile-cache@^2.1.1":
   "integrity" "sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA=="
   "resolved" "https://registry.npmjs.org/v8-compile-cache/-/v8-compile-cache-2.3.0.tgz"
@@ -7672,14 +7712,6 @@
   "integrity" "sha512-+L0tqbZYuskfSpKlk1EfsB9OOuy7NNFPaIry4nZ7g+Sr4JaL5xQ6pEaE5IavkV9M/riX/1pr6uAPc9pLxcqfLg=="
   "resolved" "https://registry.npmjs.org/vue-draggable-resizable/-/vue-draggable-resizable-1.7.5.tgz"
   "version" "1.7.5"
-
-"vue-echarts-v3@^1.0.18":
-  "integrity" "sha512-BjHsJ069q/B+Py7ZwPhGpQKak8nCJR1eYCZFI3hG9aeifGxcW9pWnaSbFjhh4TF1UtKKGF33x+v9xdR1fyLh9A=="
-  "resolved" "https://registry.npmjs.org/vue-echarts-v3/-/vue-echarts-v3-1.0.19.tgz"
-  "version" "1.0.19"
-  dependencies:
-    "element-resize-detector" "latest"
-    "lodash" "latest"
 
 "vue-flatpickr-component@5.0.4":
   "integrity" "sha512-Ubr8lMeigpcbM7Gy/eIL4svdBQOu+yh/vEPwAdpMudpzq7D0xLgvvwoNWq/K39Spxjp4lEgOx/AjisOCgwZ2gA=="
@@ -7820,7 +7852,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@*", "vue@^2.0.0", "vue@^2.1.0", "vue@^2.1.8", "vue@^2.2.1", "vue@^2.2.4", "vue@^2.2.6", "vue@^2.3.0", "vue@^2.4.2", "vue@^2.5.18", "vue@^2.5.21", "vue@^2.6.10", "vue@^2.6.11", "vue@>= 1.0.0", "vue@>=2.0.0":
+"vue@^2.0.0", "vue@^2.1.0", "vue@^2.1.8", "vue@^2.2.1", "vue@^2.2.4", "vue@^2.2.6", "vue@^2.3.0", "vue@^2.4.2", "vue@^2.5.18", "vue@^2.5.21", "vue@^2.6.10", "vue@^2.6.11", "vue@>= 1.0.0", "vue@>=2.0.0":
   "integrity" "sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.14.tgz"
   "version" "2.7.14"
@@ -8239,8 +8271,3 @@
     "which-module" "^2.0.0"
     "y18n" "^4.0.0"
     "yargs-parser" "^18.1.2"
-
-"zrender@3.7.4":
-  "integrity" "sha512-5Nz7+L1wIoL0+Pp/iOP56jD6eD017qC9VRSgUBheXBiAHgOBJZ4uh4/g6e83acIwa8RKSyZf/FlceKu5ntUuxQ=="
-  "resolved" "https://registry.npmjs.org/zrender/-/zrender-3.7.4.tgz"
-  "version" "3.7.4"

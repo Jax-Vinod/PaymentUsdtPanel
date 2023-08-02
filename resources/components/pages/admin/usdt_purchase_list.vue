@@ -1,9 +1,9 @@
 <template>
-    <div class="row" id="user_list">
+    <div class="row" id="usdt_purchases_list">
         <div class="col-lg-12">
-            <b-card header="Basic Client Table" header-tag="h4" class="bg-primary-card">
+            <b-card header="USDT Purchase Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="Registered Users" :rows="tableData" :columns="columndata">
+                    <datatable title="USDT Purchase" :rows="tableData" :columns="columndata" url="admin/api/usdt_purchases_list">
                     </datatable>
                 </div>
             </b-card>
@@ -12,61 +12,35 @@
 </template>
 <script type="text/javascript">
     import datatable from "components/plugins/DataTable/DataTable.vue";
-    import ApiService from "../../../common/api.service";
 
     export default {
-        name: "users_list",
-        id: "user_list",
+        name: "usdt_purchases_list",
+        id: "usdt_purchases_list",
         components: {
             datatable
         },
         data() {
             return {
-                windowText: null,
-                someValueSetOnClick: null,
-                tableData: [],
-                columndata: [{
-                    label: 'ID',
-                    field: 'id',
-                    numeric: true,
-                    html: false,
-                }, {
-                    label: 'Name',
-                    field: 'name',
-                    numeric: false,
-                    html: false,
-                }, {
-                    label: 'Email',
-                    field: 'email',
-                    numeric: false,
-                    html: false,
-                }, {
-                    label: 'Actions',
-                    field: 'action',
-                    numeric: false,
-                    html: true,
-                }]
+                tableData: ['Date', 'Manager', 'Amount', 'Source Bank', 'Dest Bank', 'Document', 'Status', 'Action'],
+                columndata: [
+                    {data: 'created_at', name: 'created_at', sortable: true},
+                    {data: 'admin', name: 'admin', sortable: false},
+                    {data: 'amount', name: 'amount', sortable: true},
+                    {data: 'source_bank', name: 'source_bank', sortable: false},
+                    {data: 'dest_bank_detail', name: 'dest_bank_detail', sortable: false},
+                    {data: 'document', name: 'document', sortable: false},
+                    {data: 'status', name: 'status', sortable: false},
+                    {data: 'action', name: 'action', sortable: false},
+                ]
             }
         },
         methods: {
         },
         mounted() {
-            ApiService.get('auth/user_list').then(response => {
-                this.tableData = response.data.users;
-                this.tableData.forEach((item, index) => {
-                    this.$set(item, "action",
-                        "<a class='btn btn-info clickable' href='#/edit_user/" + item.id + "'>Edit</a> " +
-                        "<a class='btn btn-warning clickable' href='#/view_user/" + item.id + "'>View</a>");
-                });
-            })
-                .catch(function (error) {
-                });
         },
     }
 </script>
 
 <style type="text/css">
-    .democlass {
-        color: red;
-    }
+
 </style>
