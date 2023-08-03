@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\NoticeResource;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TraderResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,21 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthController@login')->name('login');
 
-Route::group(['prefix' => 'auth'], function ($router) {
-    Route::post('register', 'AuthController@register');
-    Route::post('login', 'AuthController@login')->name('login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-    Route::post('password_reset', 'AuthController@passwordReset');
-    Route::get('user_list', 'AuthController@user_list');
-    Route::post('password_save', 'AuthController@passwordSave');
-    Route::post('add_user', 'AuthController@addUser');
-    Route::get('get_user/{user_id}', 'AuthController@getUser');
-    Route::post('edit_user', 'AuthController@editUser');
-    Route::get('delete_user/{user_id}', 'AuthController@deleteUser');
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('usdt_orders', 'ApiAdminController@usdt_purchases_list');
+
+    Route::post('notice/upload', 'UploadController@uploadNoticeDocument');
+    Route::post('file/remove', 'UploadController@destroy');
+
+    Route::resource('traders', TraderResource::class);
+    Route::resource('notices', NoticeResource::class);
 });

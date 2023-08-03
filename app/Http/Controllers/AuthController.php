@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'passwordReset', 'passwordSave', 'deleteUser']]);
+        $this->middleware('auth:web', ['except' => ['login', 'register', 'passwordReset', 'passwordSave', 'deleteUser']]);
     }
 
     /**
@@ -50,12 +50,17 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
         $credentials = request(['email', 'password']);
-        if (!$token = auth('api')->attempt($credentials)) {
+        if (!auth()->attempt($credentials, $request->remember ?? false)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        /**
+         * @var \App\Models\User
+         */
+        $user = auth()->user();
+        $token = $user->createToken('user')->plainTextToken;
         return $this->respondWithToken($token);
     }
 
@@ -109,7 +114,7 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response()->json(auth('api')->user());
+        return response()->json(auth('web')->user());
     }
 
     /**
@@ -119,19 +124,8 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        auth('api')->logout();
+        auth('web')->logout();
         return response()->json(['message' => 'Successfully logged out']);
-    }
-
-    /**
-     * user list
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function user_list()
-    {
-        $users = User::all();
-        return response()->json(['users' => $users]);
     }
 
     /**
@@ -141,7 +135,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth('api')->refresh());
+        return $this->respondWithToken(auth('web')->refresh());
     }
 
     /**
@@ -155,70 +149,8 @@ class AuthController extends Controller
     {
         return response()->json([
             'access_token' => $token,
-            'user' => $this->guard()->user(),
+            'user' => auth()->user(),
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
-
-
         ]);
-    }
-
-    /**
-     * Make new user
-     */
-    public function addUser(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-        ]);
-        User::create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-            'password' => bcrypt($request->get('password'))
-        ]);
-        return response()->json(['success' => 'success'], 200);
-    }
-
-    /**
-     * Get user info
-     */
-    public function getUser($user_id)
-    {
-        $user = User::findOrFail($user_id);
-        return response()->json($user, 200);
-    }
-
-    /**
-     * Edit user info
-     */
-    public function editUser(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,' . $request->get('user_id'),
-            'user_id' => 'required',
-        ]);
-        $user = User::findOrFail($request->get('user_id'));
-        $user->update([
-            'email' => $request->get('email'),
-            'name' => $request->get('name')
-        ]);
-        return response()->json(['success' => 'success'], 200);
-    }
-    /**
-     * Delete user
-     */
-    public function deleteUser($user_id)
-    {
-        User::findOrFail($user_id)->delete();
-        return redirect('/#/users_list');
-    }
-
-
-    public function guard()
-    {
-        return \Auth::Guard('api');
     }
 }

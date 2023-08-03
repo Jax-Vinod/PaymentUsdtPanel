@@ -35,6 +35,9 @@ router.beforeEach((to, from, next) => {
         if (to.path === '/admin') {
             return next('/admin/dashboard');
         }
+        if (to.path === '/') {
+            return next('/notice');
+        }
     }
     next()
 })
