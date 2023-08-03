@@ -24,6 +24,6 @@ class Notice extends Model
 
     public function agent()
     {
-        return $this->belongsTo('App\Models\Agent');
+        return $this->belongsTo('App\Models\User');
     }
 }

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\TraderTransferDataTable;
-use App\DataTables\UserDataTable;
 use App\DataTables\UsdtPurchaseDataTable;
 use App\DataTables\PayoutDataTable;
 use App\DataTables\NoticeDataTable;
-use App\Models\Admin;
 use App\Models\TraderTransfer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +59,7 @@ class ApiAdminController extends Controller
 
     public function notices_list(Request $request, NoticeDataTable $table)
     {
-        return $table->render($request);
+        return $table->renderByAdmin($request);
     }
 
     public function guard()

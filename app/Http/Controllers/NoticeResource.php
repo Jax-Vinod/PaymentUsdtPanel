@@ -25,10 +25,7 @@ class NoticeResource extends Controller
      */
     public function index(Request $request, NoticeDataTable $datatable)
     {
-        if (Auth::guard('admin')->check()) {
-            return $datatable->renderByAdmin($request);
-        } else
-            return $datatable->render($request);
+        return $datatable->render($request);
     }
 
     /**
