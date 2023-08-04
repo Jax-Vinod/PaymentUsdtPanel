@@ -15,7 +15,7 @@ class UserDataTable
     {
         $start = $request->start;
         $length = $request->length;
-        $data = Trader::all();
+        $data = Trader::where('is_active', 1)->get();
         $datatable = DataTables::of($data)
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
@@ -25,6 +25,18 @@ class UserDataTable
         })
         ->rawColumns(['action']);
 
+        return $datatable->make(true);
+    }
+
+    public function blockedTraders(Request $request)
+    {
+        $start = $request->start;
+        $length = $request->length;
+        $data = Trader::where('is_active', 0)->get();
+        $datatable = DataTables::of($data)
+        ->editColumn('created_at', function ($item) {
+            return substr($item->created_at, 0, 10);
+        });
         return $datatable->make(true);
     }
 

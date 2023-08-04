@@ -5,10 +5,10 @@ const menu_items = [{
 }, {
     name: 'Notice',
     link: '/admin/notice',
-    icon: 'fa fa-desktop'
+    icon: 'fa fa-files-o'
 }, {
     name: 'Transfer',
-    icon: 'fa fa-desktop',
+    icon: 'fa fa-exchange',
     child: [{
             name: 'Transfers List',
             link: '/admin/transfers',
@@ -22,22 +22,46 @@ const menu_items = [{
 }, {
     name: 'USDT Purchase',
     link: '/admin/usdt_purchase',
-    icon: ' fa fa-address-book-o'
+    icon: ' fa fa-btc'
 },
 {
     name: 'Payout',
     link: '/admin/payout',
-    icon: ' fa fa-address-book-o'
-},
-{
-    name: 'Loses',
-    link: '/admin/loses',
-    icon: ' fa fa-address-book-o'
+    icon: ' fa fa-money'
 },
 {
     name: 'India Payments',
     link: '/admin/india_payments',
-    icon: ' fa fa-address-book-o'
+    icon: ' fa fa-inr'
+},
+{
+    name: 'Loses',
+    icon: ' fa fa-cubes',
+    child: [{
+        name: 'Chargebacks',
+        link: '/admin/chargeback',
+        icon: 'fa fa-angle-double-right'
+    }, {
+        name: 'Trader Topup',
+        link: '/admin/trader_topup',
+        icon: 'fa fa-angle-double-right'
+    }, {
+        name: 'Trader Withdrawal',
+        link: '/admin/trader_withdrawal',
+        icon: 'fa fa-angle-double-right'
+    }, {
+        name: 'Bank Withdrawal',
+        link: '/admin/bank_withdrawal',
+        icon: 'fa fa-angle-double-right'
+    }, {
+        name: 'Blocked Traders',
+        link: '/admin/blocked_traders',
+        icon: 'fa fa-angle-double-right'
+    }, {
+        name: 'Blocked Banks',
+        link: '/admin/blocked_banks',
+        icon: 'fa fa-angle-double-right'
+    }]
 },
 {
     name: 'Banks',

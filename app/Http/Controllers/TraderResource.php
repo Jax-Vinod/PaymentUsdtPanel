@@ -27,6 +27,11 @@ class TraderResource extends Controller
         return $datatable->traders($request);
     }
 
+    public function blocked_traders_list(Request $request, UserDataTable $datatable)
+    {
+        return $datatable->blockedTraders($request);
+    }
+
     /**
      * Return Trader detail by id.
      *

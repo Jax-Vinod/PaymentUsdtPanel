@@ -2,8 +2,12 @@
 
 use App\Http\Controllers\AdminResource;
 use App\Http\Controllers\BankResource;
+use App\Http\Controllers\BankWithdrawalResource;
+use App\Http\Controllers\ChargebackResource;
 use App\Http\Controllers\UserResource;
 use App\Http\Controllers\TraderResource;
+use App\Http\Controllers\TraderTopupResource;
+use App\Http\Controllers\TraderWithdrawalResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,10 +33,17 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('payouts', 'ApiAdminController@payouts_list');
     Route::get('notices', 'ApiAdminController@notices_list');
 
+    Route::get('blocked_traders', 'TraderResource@blocked_traders_list');
+    Route::get('blocked_banks', 'BankResource@blocked_banks_list');
+
     Route::resource('agents', UserResource::class);
     Route::resource('admins', AdminResource::class);
     Route::resource('traders', TraderResource::class);
     Route::resource('banks', BankResource::class);
+    Route::resource('chargebacks', ChargebackResource::class);
+    Route::resource('trader_topups', TraderTopupResource::class);
+    Route::resource('trader_withdrawals', TraderWithdrawalResource::class);
+    Route::resource('bank_withdrawals', BankWithdrawalResource::class);
 });
 
 Route::post('register', 'AuthController@register');

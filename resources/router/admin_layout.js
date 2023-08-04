@@ -37,10 +37,40 @@ const layout = [{
     }
 
 }, {
-    path: 'loses',
-    component: resolve => require(['pages/admin/loses'], resolve),
+    path: 'chargeback',
+    component: resolve => require(['pages/admin/loses/chargeback'], resolve),
     meta: {
-        title: "Loses",
+        title: "Chargeback",
+    }
+}, {
+    path: 'bank_withdrawal',
+    component: resolve => require(['pages/admin/loses/bank_withdrawal'], resolve),
+    meta: {
+        title: "Bank Withdrawal",
+    }
+}, {
+    path: 'trader_withdrawal',
+    component: resolve => require(['pages/admin/loses/trader_withdrawal'], resolve),
+    meta: {
+        title: "Trader Withdrawal",
+    }
+}, {
+    path: 'trader_topup',
+    component: resolve => require(['pages/admin/loses/trader_topup'], resolve),
+    meta: {
+        title: "Trader Topup",
+    }
+}, {
+    path: 'blocked_traders',
+    component: resolve => require(['pages/admin/loses/blocked_traders'], resolve),
+    meta: {
+        title: "Blocked Trader",
+    }
+}, {
+    path: 'blocked_banks',
+    component: resolve => require(['pages/admin/loses/blocked_banks'], resolve),
+    meta: {
+        title: "Blocked Bank",
     }
 }, {
     path: 'india_payments',

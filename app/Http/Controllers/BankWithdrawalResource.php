@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\BankDataTable;
-use App\Models\Bank;
+use App\DataTables\BankWithdrawalDataTable;
+use App\Models\BankWithdrawal;
 use Illuminate\Http\Request;
 
-class BankResource extends Controller
+class BankWithdrawalResource extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,32 +18,27 @@ class BankResource extends Controller
     }
 
     /**
-     * @param BankDataTable $datatable
+     * @param BankWithdrawalDataTable $datatable
      *
      * @return Yajra\DataTables\DataTables
      */
-    public function index(Request $request, BankDataTable $datatable)
+    public function index(Request $request, BankWithdrawalDataTable $datatable)
     {
         return $datatable->render($request);
     }
 
-    public function blocked_banks_list(Request $request, BankDataTable $datatable)
-    {
-        return $datatable->renderForBlocked($request);
-    }
-
     /**
-     * Return Bank detail by id.
+     * Return BankWithdrawal detail by id.
      *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return response()->json(Bank::find($id));
+        return response()->json(BankWithdrawal::find($id));
     }
 
     /**
-     * Store a newly created Bank in storage.
+     * Store a newly created BankWithdrawal in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -51,13 +46,15 @@ class BankResource extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'beneficiary_name' => ['required'],
-            'bank_name' => ['required'],
+            'bank_id' => ['required'],
+            'amount' => ['required'],
+            'note' => ['required'],
         ]);
 
         $data = $request->all();
+        $data['admin_id'] = auth('admin')->id();
 
-        Bank::create($data);
+        BankWithdrawal::create($data);
         return response()->json(['message' => 'Created successfully']);
     }
 
@@ -65,33 +62,23 @@ class BankResource extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bank  $Bank
+     * @param  \App\Models\BankWithdrawal  $BankWithdrawal
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'beneficiary_name' => ['required'],
-            'bank_name' => ['required'],
-        ]);
-
-        $bank = Bank::find($id);
-
-        $data = $request->all();
-
-        $bank->update($data);
         return response()->json(['message' => 'Updated successfully']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Bank  $Bank
+     * @param  \App\Models\BankWithdrawal  $BankWithdrawal
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        Bank::find($id)->delete();
-        return redirect('/#/admin/banks');
+        BankWithdrawal::find($id)->delete();
+        return redirect('/#/BankWithdrawals');
     }
 }

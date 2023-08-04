@@ -12,6 +12,9 @@ class Bank extends Model
     protected $fillable = [
         'beneficiary_name',
         'bank_name',
+        'ifsc',
+        'balance',
+        'is_active'
     ];
 
     protected $hidden = ['updated_at'];

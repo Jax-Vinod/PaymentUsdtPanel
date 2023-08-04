@@ -12,7 +12,7 @@ class BankDataTable
     {
         $start = $request->start;
         $length = $request->length;
-        $data = Bank::all();
+        $data = Bank::where('is_active', 1)->get();
         $datatable = DataTables::of($data)
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
@@ -21,6 +21,18 @@ class BankDataTable
             return '';
         })
         ->rawColumns(['action']);
+        return $datatable->make(true);
+    }
+
+    public function renderForBlocked(Request $request)
+    {
+        $start = $request->start;
+        $length = $request->length;
+        $data = Bank::where('is_active', 0)->get();
+        $datatable = DataTables::of($data)
+        ->editColumn('created_at', function ($item) {
+            return substr($item->created_at, 0, 10);
+        });
         return $datatable->make(true);
     }
 }
