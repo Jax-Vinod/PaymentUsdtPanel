@@ -43,11 +43,6 @@
                                         <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-12" v-show="show_success">
-                                    <ul>
-                                        <li class="text-success">Transfer has been inserted successfully</li>
-                                    </ul>
-                                </div>
                                 <div class="col-md-offset-4 col-md-8 m-t-25">
                                     <button type="submit" class="btn btn-primary">Submit
                                     </button>
@@ -68,6 +63,8 @@
     import JwtService from "resources/common/jwt.service";
     import vue2Dropzone from 'vue2-dropzone'
     import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     Vue.use(VueForm, options);
     export default {
@@ -85,7 +82,6 @@
                 },
                 droppedFiles: [],
                 show_error:false,
-                show_success:false,
                 validationErrors:[],
                 dropzoneOptions: {
                     url: '/api/notice/upload',
@@ -129,21 +125,25 @@
                         }
                     })
             },
-            onSubmit: function () {
+            onSubmit: function (e) {
                 if (this.formstate.$invalid) {
                     return;
                 } else {
                     ApiService.post('api/notices', this.model)
                         .then(data => {
                             this.show_error = false;
-                            this.show_success = true;
-                            location.reload();
+                            miniToastr.success("Notice has been submited successfully", "Success")
+
+                            this.model = {
+                                documents: [],
+                                trader_id: "",
+                            };
+                            e.target.reset();
                         })
                         .catch(error => {
                             if (error.response.status == 422) {
                                 this.validationErrors = error.response.data.errors;
                                 this.show_error = true;
-                                this.show_success = false;
                             }
                         })
                 }
