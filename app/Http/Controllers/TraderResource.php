@@ -96,6 +96,6 @@ class TraderResource extends Controller
     public function destroy($id)
     {
         Trader::find($id)->delete();
-        return redirect('/#/admin/traders');
+        return response()->json(true);
     }
 }

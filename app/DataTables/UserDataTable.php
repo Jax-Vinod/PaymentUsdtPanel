@@ -36,7 +36,11 @@ class UserDataTable
         $datatable = DataTables::of($data)
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
-        });
+        })
+        ->addColumn('action', function ($user) {
+            return '';
+        })
+        ->rawColumns(['action']);
         return $datatable->make(true);
     }
 

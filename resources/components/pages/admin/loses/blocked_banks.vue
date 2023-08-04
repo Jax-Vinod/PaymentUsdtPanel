@@ -43,7 +43,7 @@
                     {data: 'created_at', name: 'created_at', sortable: true},
                     {data: 'action', name: 'action', sortable: true},
                 ],
-                columnDefs:[{
+                columnDefs: [{
                         "render": function(data, type, row) {
                             return "<a class='btn btn-info clickable' href='#/admin/bank/edit/" + row.id + "'><i class='fa fa-edit'> </i></a> " +
                             `<button data-item-id=${row.id} class="btn btn-danger delete-item"><i class='fa fa-trash'> </i></button>`
@@ -51,6 +51,7 @@
                         "targets": 4
                     }
                 ],
+                bank_id: -1
             }
         },
         methods: {
