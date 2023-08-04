@@ -33,7 +33,7 @@ router.beforeEach((to, from, next) => {
     }
     if (loggedIn) {
         if (to.path === '/admin') {
-            return next('/admin/dashboard');
+            return next('/admin/notice');
         }
         if (to.path === '/') {
             return next('/notice');
