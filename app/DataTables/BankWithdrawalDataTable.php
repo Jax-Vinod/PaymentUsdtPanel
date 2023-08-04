@@ -18,7 +18,7 @@ class BankWithdrawalDataTable
             return substr($item->created_at, 0, 10);
         })
         ->addColumn('bank', function ($item) {
-            return $item->Bank->name;
+            return $item->bank->beneficiary_name;
         })
         ->removeColumn(['bank_id']);
 
