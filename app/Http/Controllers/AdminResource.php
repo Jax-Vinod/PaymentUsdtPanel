@@ -96,7 +96,6 @@ class AdminResource extends Controller
     public function destroy($id)
     {
         Admin::find($id)->delete();
-        // return response()->json(['message' => 'Deleted successfully']);
-        return redirect('/#/admin/admins');
+        return response()->json(['message' => 'Deleted successfully']);
     }
 }

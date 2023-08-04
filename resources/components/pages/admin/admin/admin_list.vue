@@ -3,7 +3,14 @@
         <div class="col-lg-12">
             <b-card header="Admins Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="Admins" :rows="tableData" :columns="columndata" :columnDefs="columnDefs" url="admin/api/admins">
+                    <datatable
+                        ref="datatable"
+                        title="Admins"
+                        :rows="tableData"
+                        :columns="columndata"
+                        :columnDefs="columnDefs"
+                        @OpenModal="open_modal"
+                        url="admin/api/admins">
                     </datatable>
                 </div>
             </b-card>
@@ -16,7 +23,9 @@
 </template>
 <script type="text/javascript">
     import datatable from "components/plugins/DataTable/DataTable.vue";
-
+    import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
     export default {
         name: "admins_list",
         id: "admins_list",
@@ -36,7 +45,7 @@
                 columnDefs:[{
                         "render": function(data, type, row) {
                             return "<a class='btn btn-info clickable' href='#/admin/admin/edit/" + row.id + "'>Edit</a> " +
-                            `<button onclick="open_modal(${row.id})" class="btn btn-danger">Delete</button>`
+                            `<button data-item-id=${row.id} class="btn btn-danger delete-item">Delete</button>`
                         },
                         "targets": 4
                     }
@@ -51,7 +60,8 @@
             },
             deleteItem() {
                 ApiService.delete('admin/api/admins/' + this.admin_id).then(response => {
-
+                    miniToastr.success("Admin has been deleted successfully", "Success")
+                    this.$refs.datatable.reload();
                 })
                     .catch(function (error) {
                     });

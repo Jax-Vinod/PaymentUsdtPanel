@@ -34,11 +34,14 @@
         methods: {
             open_modal(id) {
                 this.$emit('OpenModal', id);
+            },
+            reload() {
+                this.table.draw();
             }
         },
         mounted() {
             var self = this;
-            var table = $('#dataTable').DataTable({
+            this.table = $('#dataTable').DataTable({
                 processing: true,
                 serverSide: true,
                 aLengthMenu: [[10, 30, 50, 75, -1], [10, 30, 50, 75, "All"]],

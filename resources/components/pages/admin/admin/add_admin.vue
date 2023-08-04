@@ -4,7 +4,7 @@
             <b-card header="Add Admin" header-tag="h4" class="bg-success-card">
                 <div class="row">
                     <div class="col-lg-12 col-12 mb-3">
-                        <vue-form class="form-horizontal form-validation" :state="formstate" @submit.prevent="onSubmit">
+                        <vue-form ref="form1" class="form-horizontal form-validation" :state="formstate" @submit.prevent="onSubmit">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="col-lg-12">
@@ -72,11 +72,6 @@
                                         <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-12" v-show="show_success">
-                                    <ul>
-                                        <li class="text-success">Admin has been inserted successfully</li>
-                                    </ul>
-                                </div>
                                 <div class="col-md-offset-4 col-md-8 m-t-25">
                                     <button type="submit" class="btn btn-primary">Submit
                                     </button>
@@ -98,6 +93,8 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     Vue.use(VueForm, options);
     export default {
@@ -112,26 +109,26 @@
                     password_confirmation: "",
                 },
                 show_error:false,
-                show_success:false,
                 validationErrors:[],
             }
         },
         methods: {
-            onSubmit: function () {
+            onSubmit: function (e) {
                 if (this.formstate.$invalid) {
                     return;
                 } else {
                     ApiService.post('admin/api/admins', this.model)
                         .then(data => {
                             this.show_error = false;
-                            this.show_success = true;
-                            location.reload();
+                            miniToastr.success("Admin has been inserted successfully", "Success")
+
+                            this.form_reset()
+                            e.target.reset();
                         })
                         .catch(error => {
                             if (error.response.status == 422) {
                                 this.validationErrors = error.response.data.errors;
                                 this.show_error = true;
-                                this.show_success = false;
                             }
                         })
                 }
