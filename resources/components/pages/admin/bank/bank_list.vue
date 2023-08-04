@@ -4,6 +4,7 @@
             <b-card header="Banks Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
                     <datatable
+                        ref="datatable"
                         title="banks"
                         :rows="tableData"
                         :columns="columndata"
@@ -23,6 +24,8 @@
 <script type="text/javascript">
     import datatable from "components/plugins/DataTable/DataTable.vue";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     export default {
         name: "banks_list",
@@ -43,8 +46,8 @@
                 ],
                 columnDefs:[{
                         "render": function(data, type, row) {
-                            return "<a class='btn btn-info clickable' href='#/admin/bank/edit/" + row.id + "'>Edit</a> " +
-                            `<button data-item-id=${row.id} class="btn btn-danger delete-item">Delete</button>`
+                            return "<a class='btn btn-info clickable' href='#/admin/bank/edit/" + row.id + "'><i class='fa fa-edit'> </i></a> " +
+                            `<button data-item-id=${row.id} class="btn btn-danger delete-item"><i class='fa fa-trash'> </i></button>`
                         },
                         "targets": 5
                     }
@@ -60,7 +63,8 @@
             },
             deleteItem() {
                 ApiService.delete('admin/api/banks/' + this.bank_id).then(response => {
-                    location.reload();
+                    miniToastr.success("Bank has been deleted successfully", "Success")
+                    this.$refs.datatable.reload();
                 })
                 .catch(function (error) {
                 });

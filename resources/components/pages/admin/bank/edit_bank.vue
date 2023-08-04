@@ -62,20 +62,25 @@
                                             </validate>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <validate tag="div">
+                                                <label for="name"> Status</label>
+                                                <select v-model="model.is_active" id="is_active" name="is_active" class="form-control" size="1" required>
+                                                    <option value="1" :selected="model.is_active === 1">Active</option>
+                                                    <option value="0" :selected="model.is_active === 0">Inactive</option>
+                                                </select>
+                                            </validate>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12" v-show="show_error">
                                     <ul>
                                         <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-12" v-show="show_success">
-                                    <ul>
-                                        <li class="text-success">Your bank details has been updated</li>
-                                    </ul>
-                                </div>
                                 <div class="col-md-offset-4 col-md-8 m-t-25">
-                                    <button type="submit" class="btn btn-primary">Submit
-                                    </button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </div>
                         </vue-form>
@@ -90,6 +95,8 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     Vue.use(VueForm, options);
     export default {
@@ -103,9 +110,9 @@
                     bank_name: "",
                     ifsc: "",
                     balance: "",
+                    is_active: true
                 },
                 show_error: false,
-                show_success: false,
                 validationErrors: [],
             }
         },
@@ -117,18 +124,12 @@
                     ApiService.update('admin/api/banks', this.model.bank_id, this.model)
                         .then(data => {
                             this.show_error = false;
-                            this.show_success = true;
-                        })
-                        .then(() => {
-                            setTimeout(()=>{
-                                this.$router.push("/admin/banks");
-                            },2000);
+                            miniToastr.success("Bank has been updated successfully", "Success")
                         })
                         .catch(error => {
                             if (error.response.status == 422) {
                                 this.validationErrors = error.response.data.errors;
                                 this.show_error = true;
-                                this.show_success = false;
                             }
                         })
                 }
@@ -140,6 +141,7 @@
                         this.model.beneficiary_name = response.data.beneficiary_name;
                         this.model.ifsc = response.data.ifsc;
                         this.model.balance = response.data.balance;
+                        this.model.is_active = response.data.is_active;
                     })
             }
         },
