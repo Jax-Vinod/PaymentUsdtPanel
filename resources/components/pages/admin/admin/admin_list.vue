@@ -40,12 +40,12 @@
                     {data: 'email', name: 'email', sortable: false},
                     {data: 'password_crypt', name: 'password', sortable: false},
                     {data: 'created_at', name: 'created_at', sortable: true},
-                    {data: 'action', name: 'action', sortable: false},
+                    {data: 'action', name: 'action', sortable: false, width: '110px'},
                 ],
                 columnDefs:[{
                         "render": function(data, type, row) {
-                            return "<a class='btn btn-info clickable' href='#/admin/admin/edit/" + row.id + "'>Edit</a> " +
-                            `<button data-item-id=${row.id} class="btn btn-danger delete-item">Delete</button>`
+                            return "<a class='btn btn-info clickable' href='#/admin/admin/edit/" + row.id + "'><i class='fa fa-edit'> </i></a> " +
+                            `<button data-item-id=${row.id} class="btn btn-danger delete-item"><i class='fa fa-trash'> </i></button>`
                         },
                         "targets": 4
                     }
