@@ -32,8 +32,12 @@
             }
         },
         methods: {
+            open_modal(id) {
+                this.$emit('OpenModal', id);
+            }
         },
         mounted() {
+            var self = this;
             var table = $('#dataTable').DataTable({
                 processing: true,
                 serverSide: true,
@@ -50,7 +54,12 @@
                     [0, 'desc']
                 ],
                 columns: this.columns,
-                columnDefs: this.columnDefs
+                columnDefs: this.columnDefs,
+                drawCallback: function( settings ) {
+                    $(".delete-item").on( 'click', function (e) {
+                       self.open_modal(e.target.dataset.itemId)
+                    });
+                }
             });
         }
     }

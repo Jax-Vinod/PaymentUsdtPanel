@@ -96,6 +96,6 @@ class BankResource extends Controller
     public function destroy($id)
     {
         Bank::find($id)->delete();
-        return redirect('/#/admin/banks');
+        return response()->json(true);
     }
 }

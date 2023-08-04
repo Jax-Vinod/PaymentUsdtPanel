@@ -53,7 +53,10 @@ const ApiService = {
         return Vue.axios.put(`${resource}`, params);
     },
 
-    delete(resource) {
+    async delete(resource) {
+        if (JwtService.getToken() !== null) {
+            this.setHeader();
+        }
         return Vue.axios.delete(resource).catch(error => {
             throw new Error(`[RWV] ApiService ${error}`);
         });
