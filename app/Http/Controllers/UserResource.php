@@ -77,11 +77,6 @@ class UserResource extends Controller
         ]);
 
         $user = User::find($id);
-        // if ($user->email != $request->email) {
-        //     $this->validate($request, [
-        //         'email' => ['required', 'email', 'unique:users,email'],
-        //     ]);
-        // }
 
         $data = $request->all();
 
@@ -98,6 +93,6 @@ class UserResource extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect('/#/admin/agents');
+        return response()->json(true);
     }
 }

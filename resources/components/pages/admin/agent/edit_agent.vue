@@ -41,14 +41,8 @@
                                         <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-12" v-show="show_success">
-                                    <ul>
-                                        <li class="text-success">Your user details has been updated</li>
-                                    </ul>
-                                </div>
                                 <div class="col-md-offset-4 col-md-8 m-t-25">
-                                    <button type="submit" class="btn btn-primary">Submit
-                                    </button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </div>
                         </vue-form>
@@ -63,6 +57,8 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     Vue.use(VueForm, options);
     export default {
@@ -76,7 +72,6 @@
                     email: "",
                 },
                 show_error: false,
-                show_success: false,
                 validationErrors: [],
             }
         },
@@ -88,7 +83,7 @@
                     ApiService.update('admin/api/agents', this.model.user_id, this.model)
                         .then(data => {
                             this.show_error = false;
-                            this.show_success = true;
+                            miniToastr.success("Agent has been updated successfully", "Success")
                         })
                         .then(() => {
                             setTimeout(()=>{
@@ -115,11 +110,8 @@
         beforeMount() {
             if(this.$route.params.user_id > 0) {
                 this.model.user_id = this.$route.params.user_id;
-            }else{
-                let user = window.localStorage.getItem('user');
-                this.model.user_id = JSON.parse(user)['id'];
+                this.getUserInfo();
             }
-            this.getUserInfo();
         },
         destroyed: function () {
 
