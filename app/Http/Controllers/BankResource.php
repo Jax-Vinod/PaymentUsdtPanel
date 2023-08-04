@@ -53,6 +53,8 @@ class BankResource extends Controller
         $this->validate($request, [
             'beneficiary_name' => ['required'],
             'bank_name' => ['required'],
+            'ifsc' => ['required'],
+            'balance' => ['required'],
         ]);
 
         $data = $request->all();
@@ -73,6 +75,8 @@ class BankResource extends Controller
         $this->validate($request, [
             'beneficiary_name' => ['required'],
             'bank_name' => ['required'],
+            'balance' => ['required'],
+            'ifsc' => ['required'],
         ]);
 
         $bank = Bank::find($id);

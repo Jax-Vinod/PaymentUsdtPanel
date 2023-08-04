@@ -21,10 +21,12 @@
         },
         data() {
             return {
-                tableData: ['Bank Name', 'Beneficiary Name', 'Created At', 'Action'],
+                tableData: ['Bank Name', 'Beneficiary Name', 'IFSC', 'Balance', 'Created At', 'Action'],
                 columndata: [
                     {data: 'bank_name', name: 'bank_name', sortable: false},
                     {data: 'beneficiary_name', name: 'beneficiary_name', sortable: false},
+                    {data: 'ifsc', name: 'ifsc', sortable: false},
+                    {data: 'balance', name: 'balance', sortable: false},
                     {data: 'created_at', name: 'created_at', sortable: true},
                     {data: 'action', name: 'action', sortable: false},
                 ],
@@ -33,7 +35,7 @@
                             return "<a class='btn btn-info clickable' href='#/admin/bank/edit/" + row.id + "'>Edit</a> " +
                             `<button onclick="open_modal(${row.id})" class="btn btn-danger">Delete</button>`
                         },
-                        "targets": 3
+                        "targets": 5
                     }
                 ],
                 trader_id: -1

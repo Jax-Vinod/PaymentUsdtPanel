@@ -35,6 +35,34 @@
                                             </validate>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <validate tag="div">
+                                                <label for="ifsc"> IFSC</label>
+                                                <input v-model="model.ifsc" name="ifsc" id="ifsc" type="text"
+                                                       required placeholder="IFSC" class="form-control"/>
+                                                <field-messages name="ifsc" show="$invalid && $submitted"
+                                                                class="text-danger">
+                                                    <div slot="required">IFSC is a required field</div>
+                                                    <div slot="ifsc">IFSC is not valid</div>
+                                                </field-messages>
+                                            </validate>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <validate tag="div">
+                                                <label for="balance"> Balance</label>
+                                                <input v-model="model.balance" name="balance" id="balance" type="number"
+                                                       required placeholder="Balance" class="form-control"/>
+                                                <field-messages name="balance" show="$invalid && $submitted"
+                                                                class="text-danger">
+                                                    <div slot="required">Balance is a required field</div>
+                                                    <div slot="balance">Balance is not valid</div>
+                                                </field-messages>
+                                            </validate>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12" v-show="show_error">
                                     <ul>
@@ -77,6 +105,8 @@
                 model: {
                     beneficiary_name: "",
                     bank_name: "",
+                    ifsc: "",
+                    balance: "",
                 },
                 show_error:false,
                 show_success:false,
@@ -107,6 +137,8 @@
                 this.model = {
                     beneficiary_name: "",
                     bank_name: "",
+                    ifsc: "",
+                    balance: "",
                 };
             }
         },
