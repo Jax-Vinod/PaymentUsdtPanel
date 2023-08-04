@@ -22,11 +22,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::post('register', 'AuthController@register');
+Route::post('login', 'AuthAdminController@login')->name('admin.login');
 
 Route::middleware('auth:sanctum')->group(function() {
+    Route::post('logout', 'AuthController@logout');
+    Route::post('password_reset', 'AuthController@passwordReset');
+    Route::post('password_save', 'AuthController@passwordSave');
+
     Route::get('transfers', 'ApiAdminController@transfers_list');
     Route::post('transfers', 'ApiAdminController@createTransfer');
     Route::get('usdt_purchases', 'ApiAdminController@usdt_purchases_list');
@@ -44,20 +48,5 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::resource('trader_topups', TraderTopupResource::class);
     Route::resource('trader_withdrawals', TraderWithdrawalResource::class);
     Route::resource('bank_withdrawals', BankWithdrawalResource::class);
-});
 
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthAdminController@login')->name('admin.login');
-
-Route::group(['prefix' => 'auth'], function ($router) {
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-    Route::post('password_reset', 'AuthController@passwordReset');
-    Route::get('user_list', 'AuthController@user_list');
-    Route::post('password_save', 'AuthController@passwordSave');
-    Route::post('add_user', 'AuthController@addUser');
-    Route::get('get_user/{user_id}', 'AuthController@getUser');
-    Route::post('edit_user', 'AuthController@editUser');
-    Route::get('delete_user/{user_id}', 'AuthController@deleteUser');
 });

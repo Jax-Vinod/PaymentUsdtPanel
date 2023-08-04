@@ -52,7 +52,7 @@ class TraderWithdrawalResource extends Controller
         ]);
 
         $data = $request->all();
-        $data['admin_id'] = auth('admin')->id();
+        $data['admin_id'] = $request->user()->id;
 
         TraderWithdrawal::create($data);
         return response()->json(['message' => 'Created successfully']);

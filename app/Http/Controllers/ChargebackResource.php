@@ -51,7 +51,7 @@ class ChargebackResource extends Controller
         ]);
 
         $data = $request->all();
-        $data['admin_id'] = auth('admin')->id();
+        $data['admin_id'] = $request->user()->id;
 
         Chargeback::create($data);
         return response()->json(['message' => 'Created successfully']);
