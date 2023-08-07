@@ -45,15 +45,15 @@
                     <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                 </ul>
             </div>
-            <div class="col-sm-12" v-show="show_success">
-                <ul>
-                    <li class="text-success">Chargeback has been inserted successfully</li>
-                </ul>
-            </div>
             </vue-form>
             <b-card header="Chargeback Table" header-tag="h4" class="bg-primary-card">
                 <div class="table-responsive">
-                    <datatable title="Chargeback" :rows="tableData" :columns="columndata" url="admin/api/chargebacks">
+                    <datatable
+                        ref="datatable"
+                        title="Chargeback"
+                        :rows="tableData"
+                        :columns="columndata"
+                        url="admin/api/chargebacks">
                     </datatable>
                 </div>
             </b-card>
@@ -66,6 +66,8 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     Vue.use(VueForm, options);
     export default {
@@ -88,29 +90,33 @@
                 model: {
                     amount: "",
                     trader_id: "",
-                    bank_id: "",
                 },
                 show_error:false,
-                show_success:false,
                 validationErrors:[],
             }
         },
         methods: {
-            onSubmit: function () {
+            onSubmit: function (e) {
                 if (this.formstate.$invalid) {
                     return;
                 } else {
                     ApiService.post('admin/api/chargebacks', this.model)
                         .then(data => {
                             this.show_error = false;
-                            this.show_success = true;
-                            location.reload();
+                            miniToastr.success("Chargeback has been inserted successfully", "Success")
+
+                            this.model = {
+                                amount: "",
+                                trader_id: "",
+                            },
+                            e.target.reset();
+
+                            this.$refs.datatable.reload();
                         })
                         .catch(error => {
                             if (error.response.status == 422) {
                                 this.validationErrors = error.response.data.errors;
                                 this.show_error = true;
-                                this.show_success = false;
                             }
                         })
                 }
