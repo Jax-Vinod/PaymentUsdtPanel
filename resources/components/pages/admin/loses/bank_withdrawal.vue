@@ -69,7 +69,12 @@
             </vue-form>
             <b-card header="Bank Withdrawal Table" header-tag="h4" class="bg-primary-card mt-5">
                 <div class="table-responsive">
-                    <datatable title="Bank Withdrawal" :rows="tableData" :columns="columndata" url="admin/api/bank_withdrawals">
+                    <datatable
+                        ref="datatable"
+                        title="Bank Withdrawal"
+                        :rows="tableData"
+                        :columns="columndata"
+                        url="admin/api/bank_withdrawals">
                     </datatable>
                 </div>
             </b-card>
@@ -82,6 +87,8 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     Vue.use(VueForm, options);
 
@@ -114,21 +121,27 @@
             }
         },
         methods: {
-            onSubmit: function () {
+            onSubmit: function (e) {
                 if (this.formstate.$invalid) {
                     return;
                 } else {
                     ApiService.post('admin/api/bank_withdrawals', this.model)
                         .then(data => {
                             this.show_error = false;
-                            this.show_success = true;
-                            location.reload();
+                            miniToastr.success("Bank Withdrawal has been inserted successfully", "Success")
+                            this.model = {
+                                amount: "",
+                                bank_id: "",
+                                note: "",
+                            },
+                            e.target.reset();
+
+                            this.$refs.datatable.reload();
                         })
                         .catch(error => {
                             if (error.response.status == 422) {
                                 this.validationErrors = error.response.data.errors;
                                 this.show_error = true;
-                                this.show_success = false;
                             }
                         })
                 }
