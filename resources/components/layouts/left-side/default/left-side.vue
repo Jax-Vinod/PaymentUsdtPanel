@@ -29,6 +29,7 @@
 <script>
 import profile from "../left-profile/user_profile2.vue"
 import menu_items from "../../../../menu.js";
+import notice_menu_items from "../../../../notice_menu.js";
 import admin_menu_items from "../../../../admin_menu.js";
 import super_admin_menu_items from "../../../../super_admin_menu.js";
 import vmenu from "./menu/vueMenu.vue";
@@ -51,7 +52,14 @@ export default {
         const user = window.localStorage.getItem('user');
         if (user != null) {
             const role = JSON.parse(user)['role'];
-            this.menuitems = role === undefined ? menu_items : role === 'superadmin' ? super_admin_menu_items : admin_menu_items
+            if (role === undefined) {
+                const type = JSON.parse(user)['type'];
+                if (type === 'notice') {
+                    this.menuitems = notice_menu_items;
+                } else this.menuitems = menu_items;
+            } else {
+                this.menuitems = role === 'superadmin' ? super_admin_menu_items : admin_menu_items
+            }
         }
     },
 }
