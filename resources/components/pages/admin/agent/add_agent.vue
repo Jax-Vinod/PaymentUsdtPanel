@@ -66,13 +66,19 @@
                                             </validate>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12 mt-2">
+                                        <div class="custom-controls-stacked">
+                                            <b-form-radio-group v-model="model.type" :options="agenTypes" name="type">
+                                            </b-form-radio-group>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12" v-show="show_error">
                                     <ul>
                                         <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                                     </ul>
                                 </div>
-                                <div class="col-md-offset-4 col-md-8 m-t-25">
+                                <div class="col-md-offset-4 col-md-8 mt-3">
                                     <button type="submit" class="btn btn-primary">Submit
                                     </button>
                                     <button type="reset" class="btn btn-effect-ripple btn-secondary  reset_btn1"
@@ -106,10 +112,15 @@
                     name: "",
                     email: "",
                     password: "",
+                    type: '',
                     password_confirmation: "",
                 },
                 show_error:false,
                 validationErrors:[],
+                agenTypes: [
+                { text: 'Notice Agent', value: 'notice' },
+                { text: 'USDT Agent', value: 'usdt' }
+                ]
             }
         },
         methods: {
@@ -138,6 +149,7 @@
                     name: "",
                     email: "",
                     password: "",
+                    type: '',
                     password_confirmation: "",
                 };
             }

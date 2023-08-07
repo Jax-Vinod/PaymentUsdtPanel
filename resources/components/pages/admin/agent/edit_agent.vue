@@ -35,13 +35,19 @@
                                             </validate>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12 mt-2">
+                                        <div class="custom-controls-stacked">
+                                            <b-form-radio-group v-model="model.type" :options="agenTypes" name="type">
+                                            </b-form-radio-group>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-12" v-show="show_error">
                                     <ul>
                                         <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                                     </ul>
                                 </div>
-                                <div class="col-md-offset-4 col-md-8 m-t-25">
+                                <div class="col-md-offset-4 col-md-8 mt-3">
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </div>
                             </div>
@@ -70,9 +76,14 @@
                     user_id: 0,
                     name: "",
                     email: "",
+                    type: '',
                 },
                 show_error: false,
                 validationErrors: [],
+                agenTypes: [
+                { text: 'Notice Agent', value: 'notice' },
+                { text: 'USDT Agent', value: 'usdt' }
+                ]
             }
         },
         methods: {
@@ -104,6 +115,7 @@
                     .then(response => {
                         this.model.email = response.data.email;
                         this.model.name = response.data.name;
+                        this.model.type = response.data.type;
                     })
             }
         },
