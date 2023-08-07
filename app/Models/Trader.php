@@ -10,6 +10,7 @@ class Trader extends Model
     use HasFactory;
 
     protected $fillable = [
+        'agent_id',
         'name',
         'email',
         'phone',
@@ -20,4 +21,9 @@ class Trader extends Model
     ];
 
     protected $hidden = ['updated_at'];
+
+    public function agent()
+    {
+        return $this->belongsTo('\App\Models\User', 'agent_id', 'id');
+    }
 }

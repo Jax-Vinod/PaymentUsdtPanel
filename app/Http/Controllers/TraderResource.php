@@ -51,6 +51,7 @@ class TraderResource extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'agent_id' => ['required'],
             'email' => ['required', 'email', 'unique:traders,email'],
             'name' => ['required'],
             'phone' => ['required'],

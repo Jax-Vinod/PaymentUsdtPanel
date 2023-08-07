@@ -20,6 +20,9 @@ class UserDataTable
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
         })
+        ->addColumn('agent', function ($item) {
+            return $item->agent ? $item->agent->name : 'No agent';
+        })
         ->addColumn('action', function ($user) {
             return '';
         })
@@ -36,6 +39,9 @@ class UserDataTable
         $datatable = DataTables::of($data)
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
+        })
+        ->addColumn('agent', function ($item) {
+            return $item->agent ? $item->agent->name : 'No agent';
         })
         ->addColumn('action', function ($user) {
             return '';

@@ -10,6 +10,21 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <validate tag="div">
+                                                <label for="name"> Agent</label>
+                                                <select v-model="model.agent_id" id="agent" name="agent_id" class="form-control" size="1" required>
+                                                    <option value="0" selected disabled>-- Please select --</option>
+                                                    <option v-for="agent in agents" :value="agent.id">{{ agent.name }}</option>
+                                                </select>
+                                                <field-messages name="agent_id" show="$invalid && $submitted"
+                                                                class="text-danger">
+                                                    <div slot="required">Agent is a required field</div>
+                                                </field-messages>
+                                            </validate>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <validate tag="div">
                                                 <label for="name"> Trader Name</label>
                                                 <input v-model="model.name" id="name" name="name" type="text"
                                                        required autofocus placeholder="Trader Name" class="form-control"/>
@@ -98,6 +113,7 @@
             return {
                 formstate: {},
                 model: {
+                    agent_id: -1,
                     name: "",
                     email: "",
                     phone: "",
@@ -105,6 +121,7 @@
                 },
                 show_error:false,
                 validationErrors:[],
+                agents: []
             }
         },
         methods: {
@@ -136,10 +153,19 @@
                     phone: "",
                     upi: "",
                 };
-            }
+            },
+            getAgents() {
+                ApiService.get('admin/api/agents/')
+                    .then(response => {
+                        this.agents = response.data.data;
+                    })
+                }
         },
         mounted: function () {
 
+        },
+        beforeMount() {
+            this.getAgents();
         },
         destroyed: function () {
 

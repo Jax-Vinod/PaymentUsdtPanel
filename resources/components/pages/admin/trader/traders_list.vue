@@ -31,12 +31,13 @@
         },
         data() {
             return {
-                tableData: ['Name', 'Email', 'Phone', 'UPI', 'Created At', 'Action'],
+                tableData: ['Name', 'Email', 'Phone', 'UPI', 'Agent', 'Created At', 'Action'],
                 columndata: [
                     {data: 'name', name: 'name', sortable: false},
                     {data: 'email', name: 'email', sortable: false},
                     {data: 'phone', name: 'phone', sortable: false},
                     {data: 'upi', name: 'upi', sortable: false},
+                    {data: 'agent', name: 'agent', sortable: false},
                     {data: 'created_at', name: 'created_at', sortable: true},
                     {data: 'action', name: 'action', sortable: false},
                 ],
@@ -45,7 +46,7 @@
                             return "<a class='btn btn-info clickable' href='#/admin/trader/edit/" + row.id + "'><i class='fa fa-edit'> </i></a> " +
                             `<button data-item-id=${row.id} class="btn btn-danger delete-item"><i class='fa fa-trash'> </i></button>`
                         },
-                        "targets": 5
+                        "targets": 6
                     }
                 ],
                 trader_id: -1
