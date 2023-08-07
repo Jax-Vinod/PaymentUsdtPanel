@@ -61,15 +61,15 @@
                     <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
                 </ul>
             </div>
-            <div class="col-sm-12" v-show="show_success">
-                <ul>
-                    <li class="text-success">Withdrawal has been inserted successfully</li>
-                </ul>
-            </div>
             </vue-form>
             <b-card header="Trader Withdrawal Table" header-tag="h4" class="bg-primary-card mt-5">
                 <div class="table-responsive">
-                    <datatable title="Trader Withdrawal" :rows="tableData" :columns="columndata" url="admin/api/trader_withdrawals">
+                    <datatable
+                        ref="datatable"
+                        title="Trader Withdrawal"
+                        :rows="tableData"
+                        :columns="columndata"
+                        url="admin/api/trader_withdrawals">
                     </datatable>
                 </div>
             </b-card>
@@ -82,6 +82,8 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     Vue.use(VueForm, options);
 
@@ -109,26 +111,31 @@
                     note: "",
                 },
                 show_error:false,
-                show_success:false,
                 validationErrors:[],
             }
         },
         methods: {
-            onSubmit: function () {
+            onSubmit: function (e) {
                 if (this.formstate.$invalid) {
                     return;
                 } else {
                     ApiService.post('admin/api/trader_withdrawals', this.model)
                         .then(data => {
                             this.show_error = false;
-                            this.show_success = true;
-                            location.reload();
+                            miniToastr.success("Trader Withdrawal has been inserted successfully", "Success")
+                            this.model = {
+                                amount: "",
+                                trader_id: "",
+                                note: "",
+                            },
+                            e.target.reset();
+
+                            this.$refs.datatable.reload();
                         })
                         .catch(error => {
                             if (error.response.status == 422) {
                                 this.validationErrors = error.response.data.errors;
                                 this.show_error = true;
-                                this.show_success = false;
                             }
                         })
                 }

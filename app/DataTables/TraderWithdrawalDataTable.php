@@ -18,7 +18,7 @@ class TraderWithdrawalDataTable
             return substr($item->created_at, 0, 10);
         })
         ->addColumn('trader', function ($item) {
-            return $item->trader->name;
+            return $item->trader ? $item->trader->name: 'No trader';
         })
         ->removeColumn(['trader_id']);
 
