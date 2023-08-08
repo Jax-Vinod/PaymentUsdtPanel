@@ -17,6 +17,17 @@ class UsdtPurchaseDataTable
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
         })
+        ->editColumn('document', function ($item) {
+            // $docs = explode(',', $item->document);
+            $docs = json_decode($item->document, true);
+            if (isset($docs)) {
+                $str = '<div class="d-flex">';
+                foreach ($docs as $doc) {
+                    $str = $str . '<img src="'.$doc.'" width="100px" />';
+                }
+                return $str;
+            } else return '';
+        })
         ->addColumn('admin', function ($item) {
             return $item->admin ? $item->admin->name: 'N/A';
         })
@@ -27,7 +38,7 @@ class UsdtPurchaseDataTable
             return '';
         })
         ->removeColumn(['admin_id', 'bank_id'])
-        ->rawColumns(['action']);
+        ->rawColumns(['action', 'document']);
 
         return $datatable->make(true);
     }
@@ -41,6 +52,17 @@ class UsdtPurchaseDataTable
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
         })
+        ->editColumn('document', function ($item) {
+            // $docs = explode(',', $item->document);
+            $docs = json_decode($item->document, true);
+            if (isset($docs)) {
+                $str = '<div class="d-flex">';
+                foreach ($docs as $doc) {
+                    $str = $str . '<img src="'.$doc.'" width="100px" />';
+                }
+                return $str;
+            } else return '';
+        })
         ->addColumn('admin', function ($item) {
             return $item->admin ? $item->admin->name: 'N/A';
         })
@@ -51,7 +73,7 @@ class UsdtPurchaseDataTable
             return '';
         })
         ->removeColumn(['admin_id', 'bank_id'])
-        ->rawColumns(['action']);
+        ->rawColumns(['action', 'document']);
 
         return $datatable->make(true);
     }
@@ -65,6 +87,17 @@ class UsdtPurchaseDataTable
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
         })
+        ->editColumn('document', function ($item) {
+            // $docs = explode(',', $item->document);
+            $docs = json_decode($item->document, true);
+            if (isset($docs)) {
+                $str = '<div class="d-flex">';
+                foreach ($docs as $doc) {
+                    $str = $str . '<img src="'.$doc.'" width="100px" />';
+                }
+                return $str;
+            } else return '';
+        })
         ->addColumn('admin', function ($item) {
             return $item->admin ? $item->admin->name: 'N/A';
         })
@@ -75,7 +108,7 @@ class UsdtPurchaseDataTable
             return '';
         })
         ->removeColumn(['admin_id', 'bank_id'])
-        ->rawColumns(['action']);
+        ->rawColumns(['action', 'document']);
 
         return $datatable->make(true);
     }
