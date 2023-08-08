@@ -47,11 +47,6 @@ class ApiAdminController extends Controller
 
     }
 
-    public function usdt_purchases_list(Request $request, UsdtPurchaseDataTable $table)
-    {
-        return $table->render($request);
-    }
-
     public function payouts_list(Request $request, PayoutDataTable $table)
     {
         return $table->render($request);

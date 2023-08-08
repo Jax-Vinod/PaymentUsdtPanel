@@ -47,6 +47,29 @@ class UploadController extends Controller
         return response()->json($doc_path);
     }
 
+    public function uploadFile(Request $request)
+    {
+        $this->validate($request, [
+            'file' => ['required', 'mimes:jpeg,png,jpg'],
+        ]);
+
+        $doc_path = null;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            if($file->getSize() > 20971520) // 20M
+                return response()->json(['error' => 'The file must be less than 20M'], 500);
+            try {
+                $doc = $file->storeAs('files', time().'.'.$file->getClientOriginalExtension(), 's3');
+                $doc_path = Storage::disk('s3')->url($doc);
+            } catch (\Throwable $th) {
+                Log::error('notice upload: '.$th->getMessage());
+                return response()->json(['error' => 'The file upload error'], 500);
+            }
+
+        }
+        return response()->json($doc_path);
+    }
+
     public function destroy(Request $request)
     {
         try {

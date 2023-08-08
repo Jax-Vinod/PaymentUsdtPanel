@@ -11,11 +11,14 @@ class UsdtPurchase extends Model
 
     protected $fillable = [
         'admin_id',
+        'agent_id',
         'amount',
         'bank_id',
         'dest_bank_detail',
         'document',
-        'status'
+        'txn_hash',
+        'status',
+        'step'
     ];
 
     protected $hidden = ['updated_at'];

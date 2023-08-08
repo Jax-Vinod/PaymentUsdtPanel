@@ -25,9 +25,21 @@ const layout = [{
     }
 }, {
     path: 'usdt_purchase',
-    component: resolve => require(['pages/admin/usdt_purchase_list'], resolve),
+    component: resolve => require(['pages/admin/usdt/usdt_purchase_list'], resolve),
     meta: {
-        title: "USDT Purchase",
+        title: "USDT Purchase List",
+    }
+}, {
+    path: 'usdt_purchase/new',
+    component: resolve => require(['pages/admin/usdt/new_usdt_purchase'], resolve),
+    meta: {
+        title: "New USDT Purchase",
+    }
+}, {
+    path: 'usdt_purchase/view/:id',
+    component: resolve => require(['pages/admin/usdt/view_usdt_purchase'], resolve),
+    meta: {
+        title: "View USDT Purchase",
     }
 }, {
     path: 'payout',

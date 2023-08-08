@@ -3,6 +3,7 @@
 use App\Http\Controllers\NoticeResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TraderResource;
+use App\Http\Controllers\UsdtPurchaseResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,14 @@ Route::post('register', 'AuthController@register');
 Route::post('login', 'AuthController@login')->name('login');
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::get('usdt_orders', 'ApiAdminController@usdt_purchases_list');
 
     Route::post('notice/upload', 'UploadController@uploadNoticeDocument');
     Route::post('file/remove', 'UploadController@destroy');
 
+    Route::post('usdt_order/step1', 'UsdtOrderController@step1');
+    Route::post('usdt_order/3', 'UsdtOrderController@step1');
+
     Route::resource('traders', TraderResource::class);
     Route::resource('notices', NoticeResource::class);
+    Route::resource('usdt_orders', UsdtPurchaseResource::class);
 });

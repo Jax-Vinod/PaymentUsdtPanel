@@ -8,6 +8,7 @@ use App\Http\Controllers\UserResource;
 use App\Http\Controllers\TraderResource;
 use App\Http\Controllers\TraderTopupResource;
 use App\Http\Controllers\TraderWithdrawalResource;
+use App\Http\Controllers\UsdtPurchaseResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,12 +34,14 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::get('transfers', 'ApiAdminController@transfers_list');
     Route::post('transfers', 'ApiAdminController@createTransfer');
-    Route::get('usdt_purchases', 'ApiAdminController@usdt_purchases_list');
     Route::get('payouts', 'ApiAdminController@payouts_list');
     Route::get('notices', 'ApiAdminController@notices_list');
 
     Route::get('blocked_traders', 'TraderResource@blocked_traders_list');
     Route::get('blocked_banks', 'BankResource@blocked_banks_list');
+
+    Route::post('usdt_purchase/step2', 'UsdtOrderController@step2');
+    Route::post('usdt_purchase/approve', 'UsdtOrderController@approve');
 
     Route::resource('agents', UserResource::class);
     Route::resource('admins', AdminResource::class);
@@ -48,5 +51,9 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::resource('trader_topups', TraderTopupResource::class);
     Route::resource('trader_withdrawals', TraderWithdrawalResource::class);
     Route::resource('bank_withdrawals', BankWithdrawalResource::class);
+    Route::resource('usdt_purchases', UsdtPurchaseResource::class);
+
+    Route::post('file/upload', 'UploadController@uploadFile');
+    Route::post('file/remove', 'UploadController@destroy');
 
 });

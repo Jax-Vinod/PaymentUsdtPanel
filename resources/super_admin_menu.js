@@ -22,11 +22,11 @@ const menu_items = [
         }
     ]
 },
-// {
-//     name: 'USDT Purchase',
-//     link: '/admin/usdt_purchase',
-//     icon: ' fa fa-btc'
-// },
+{
+    name: 'USDT Purchase',
+    link: '/admin/usdt_purchase',
+    icon: ' fa fa-btc',
+},
 // {
 //     name: 'Payout',
 //     link: '/admin/payout',

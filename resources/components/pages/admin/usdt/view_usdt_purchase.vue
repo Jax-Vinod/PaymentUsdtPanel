@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="timeline-body p-10">
                                     <p>
-                                        USDT requested {{ model.amount }}
+                                        You requested {{ model.amount }}
                                     </p>
                                 </div>
                             </div>
@@ -28,12 +28,11 @@
                             <div class="timeline-card p-20" v-if="model.step >= 1">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
-                                    Send Destination Bank
+                                    Agent Sent Destination Bank
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <step1 :id="model.id" v-if="model.dest_bank_detail === null"></step1>
-                                    <div v-else>{{ model.dest_bank_detail }}</div>
+                                    <div>{{ model.dest_bank_detail }}</div>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>
@@ -45,11 +44,14 @@
                             <div class="timeline-card p-20" v-if="model.step >= 2">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
-                                        Received Payment
+                                        Send Money From Source Bank
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <img :src="model.document" alt="" srcset="">
+                                    <step2 :id="model.id" v-if="model.bank_id === null"></step2>
+                                    <div v-else>
+                                        <img :src="model.document" alt="" srcset="">
+                                    </div>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>
@@ -61,12 +63,11 @@
                             <div class="timeline-card p-20" v-if="model.step >= 3">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
-                                        Send USDT
+                                    Agent Sent USDT
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <step3 :id="model.id" v-if="model.txn_hash === null"></step3>
-                                    <div v-else>Txn.Hash: {{ model.txn_hash }}</div>
+                                    <div >Txn.Hash: {{ model.txn_hash }}</div>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>
@@ -78,13 +79,23 @@
                             <div class="timeline-card p-20" v-if="model.step >= 4">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
-                                        Approved
+                                        Approve
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <p>
-                                        Finished this order.
-                                    </p>
+                                    <div v-if="model.step === 4">
+                                        <vue-form class="form-horizontal form-validation" :state="formstate" @submit.prevent="onApprove">
+                                            <div class="col-sm-12" v-show="show_error">
+                                                <ul>
+                                                    <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
+                                                </ul>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Approve</button>
+                                        </vue-form>
+                                    </div>
+                                    <div v-else>
+                                        <p>Finished this order</p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>
@@ -100,8 +111,8 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
-    import step1 from './step1.vue';
-    import step3 from './step3.vue';
+
+    import step2 from './step2.vue';
 
     Vue.use(VueForm, options);
     export default {
@@ -116,6 +127,7 @@
                     bank: '',
                     dest_bank_detail: "",
                     document: "",
+                    txn_hash: "",
                     step: 0
                 },
                 show_error:false,
@@ -123,12 +135,32 @@
             }
         },
         methods: {
+            onApprove: function (e) {
+                if (this.formstate.$invalid) {
+                    return;
+                } else {
+                    ApiService.post('/admin/api/usdt_purchases/approve', this.model)
+                        .then(data => {
+                            this.show_error = false;
+
+                            miniToastr.success("Approved successfully", "Success")
+
+                        })
+                        .catch(error => {
+                            if (error.response.status == 422) {
+                                this.validationErrors = error.response.data.errors;
+                                this.show_error = true;
+                            }
+                        })
+                }
+            },
             getInfo() {
-                ApiService.get('api/usdt_purchases/' + this.model.id)
+                ApiService.get('admin/api/usdt_purchases/' + this.model.id)
                     .then(response => {
                         this.model.dest_bank_detail = response.data.dest_bank_detail;
                         this.model.amount = response.data.amount;
                         this.model.document = response.data.document;
+                        this.model.txn_hash = response.data.txn_hash;
                         this.model.step = response.data.step;
                     })
             }
