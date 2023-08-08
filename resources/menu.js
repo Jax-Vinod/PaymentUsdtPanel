@@ -1,8 +1,8 @@
 const menu_items = [
     {
-        name: 'USDT Order',
+        name: 'USDT Orders',
         link: '/usdt_order',
-        icon: ' fa fa-address-book-o'
+        icon: ' fa fa-bitcoin'
     },
 ];
 export default menu_items;
