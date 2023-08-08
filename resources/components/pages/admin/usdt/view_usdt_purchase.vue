@@ -8,7 +8,7 @@
                             <div class="timeline-badge bg-primary">
                                 <i class="fa fa-arrow-circle-down"></i>
                             </div>
-                            <div class="timeline-card p-20" v-if="model.step === 0">
+                            <div class="timeline-card p-20">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
                                         Created an Order
@@ -41,7 +41,7 @@
                             <div class="timeline-badge bg-primary">
                                 <i class="fa fa-arrow-circle-down"></i>
                             </div>
-                            <div class="timeline-card p-20" v-if="model.step >= 2">
+                            <div class="timeline-card p-20" v-if="model.step >= 1">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
                                         Send Money From Source Bank
@@ -50,7 +50,7 @@
                                 <div class="timeline-body p-10">
                                     <step2 :id="model.id" v-if="model.bank_id === null"></step2>
                                     <div v-else>
-                                        <img :src="model.document" alt="" srcset="">
+                                        <img :src="item" v-for="item in JSON.parse(model.document)" alt="" srcset="">
                                     </div>
                                 </div>
                             </div>
@@ -76,14 +76,14 @@
                             <div class="timeline-badge bg-primary">
                                 <i class="fa fa-arrow-circle-down"></i>
                             </div>
-                            <div class="timeline-card p-20" v-if="model.step >= 4">
+                            <div class="timeline-card p-20" v-if="model.step >= 3">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
-                                        Approve
+                                        Payment Done
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <div v-if="model.step === 4">
+                                    <div v-if="model.step === 3">
                                         <vue-form class="form-horizontal form-validation" :state="formstate" @submit.prevent="onApprove">
                                             <div class="col-sm-12" v-show="show_error">
                                                 <ul>
@@ -111,12 +111,17 @@
     import VueForm from "vue-form";
     import options from "src/validations/validations.js";
     import ApiService from "resources/common/api.service";
+    import miniToastr from 'mini-toastr';
+    miniToastr.init();
 
     import step2 from './step2.vue';
 
     Vue.use(VueForm, options);
     export default {
         name: "usdt_timeline",
+        components: {
+            step2
+        },
         data() {
             return {
                 formstate: {},
@@ -126,6 +131,7 @@
                     bank_id: "",
                     bank: '',
                     dest_bank_detail: "",
+                    wallet_address: "",
                     document: "",
                     txn_hash: "",
                     step: 0
@@ -158,8 +164,10 @@
                 ApiService.get('admin/api/usdt_purchases/' + this.model.id)
                     .then(response => {
                         this.model.dest_bank_detail = response.data.dest_bank_detail;
+                        this.model.bank_id = response.data.bank_id;
                         this.model.amount = response.data.amount;
                         this.model.document = response.data.document;
+                        this.model.wallet_address = response.data.wallet_address;
                         this.model.txn_hash = response.data.txn_hash;
                         this.model.step = response.data.step;
                     })

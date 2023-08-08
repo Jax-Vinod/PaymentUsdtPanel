@@ -24,7 +24,7 @@ class UsdtPurchaseResource extends Controller
      */
     public function index(Request $request, UsdtPurchaseDataTable $datatable)
     {
-        return $datatable->renderNews($request);
+        return $datatable->render($request);
     }
 
     /**

@@ -17,6 +17,7 @@ class UsdtPurchase extends Model
         'dest_bank_detail',
         'document',
         'txn_hash',
+        'wallet_address',
         'status',
         'step'
     ];

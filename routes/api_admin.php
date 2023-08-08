@@ -40,8 +40,8 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('blocked_traders', 'TraderResource@blocked_traders_list');
     Route::get('blocked_banks', 'BankResource@blocked_banks_list');
 
-    Route::post('usdt_purchase/step2', 'UsdtOrderController@step2');
-    Route::post('usdt_purchase/approve', 'UsdtOrderController@approve');
+    Route::post('usdt_purchases/step2', 'UsdtOrderController@step2');
+    Route::post('usdt_purchases/approve', 'UsdtOrderController@approve');
 
     Route::resource('agents', UserResource::class);
     Route::resource('admins', AdminResource::class);

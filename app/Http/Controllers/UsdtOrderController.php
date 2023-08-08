@@ -20,11 +20,11 @@ class UsdtOrderController extends Controller
         ]);
 
         $order = UsdtPurchase::find($request->id);
-        $order->dest_bank_detail = 'Account Number: '.$request->account_number.'\n'
-                                    .'Bank Name: '.$request->bank_name.'\n'
-                                    .'IFSC Code: '.$request->ifsc.'\n'
-                                    .'Amount: '.$request->amount.'\n'
-                                    .'Min. : '.$request->min.'\n'
+        $order->dest_bank_detail = 'Account Number: '.$request->account_number.' <br> '
+                                    .'Bank Name: '.$request->bank_name.' \n '
+                                    .'IFSC Code: '.$request->ifsc.' \n '
+                                    .'Amount: '.$request->amount.' \n '
+                                    .'Min. : '.$request->min.' \n '
                                     .'Max. : '.$request->max;
         $order->amount = $request->amount;
         $order->agent_id = $request->user()->id;
@@ -46,6 +46,7 @@ class UsdtOrderController extends Controller
         $order = UsdtPurchase::find($request->id);
         $order->bank_id = $request->bank_id;
         $order->document = $request->documents;
+        $order->wallet_address = $request->wallet_address;
         $order->step = 2;
         $order->save();
 

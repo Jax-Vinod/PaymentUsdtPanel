@@ -36,7 +36,13 @@ router.beforeEach((to, from, next) => {
             return next('/admin/notice');
         }
         if (to.path === '/') {
-            return next('/notice');
+            const user = window.localStorage.getItem('user');
+            if (user != null) {
+                const type = JSON.parse(user)['type'];
+                if (type === 'notice') {
+                    return next('/notice');
+                } else return next('/usdt_order');;
+            }
         }
     }
     next()

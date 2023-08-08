@@ -18,7 +18,7 @@ const layout = [
             title: "USDT Orders",
         }
     }, {
-        path: 'usdt_order/view',
+        path: 'usdt_order/view/:id',
         component: resolve => require(['pages/user/usdt/view_usdt'], resolve),
         meta: {
             title: "View USDT Order",

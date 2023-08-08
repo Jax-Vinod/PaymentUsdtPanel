@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('file/remove', 'UploadController@destroy');
 
     Route::post('usdt_order/step1', 'UsdtOrderController@step1');
-    Route::post('usdt_order/3', 'UsdtOrderController@step1');
+    Route::post('usdt_order/step3', 'UsdtOrderController@step3');
 
     Route::resource('traders', TraderResource::class);
     Route::resource('notices', NoticeResource::class);

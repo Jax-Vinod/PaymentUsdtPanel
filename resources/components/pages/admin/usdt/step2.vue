@@ -2,8 +2,6 @@
     <div class="row">
         <div class="col-lg-12 col-12 mb-3">
             <vue-form class="form-horizontal form-validation" :state="formstate" @submit.prevent="onSubmit">
-                <div class="row">
-                    <div class="col-lg-6">
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <validate tag="div">
@@ -34,7 +32,19 @@
                                 </validate>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <validate tag="div">
+                                    <label for="name"> Wallet Address</label>
+                                    <input v-model="model.wallet_address" name="wallet_address" id="wallet_address" type="string"
+                                            required placeholder="Wallet address" class="form-control"/>
+                                    <field-messages name="wallet_address" show="$invalid && $submitted"
+                                                    class="text-danger">
+                                        <div slot="required">Wallet address is a required field</div>
+                                    </field-messages>
+                                </validate>
+                            </div>
+                        </div>
                     <div class="col-sm-12" v-show="show_error">
                         <ul>
                             <li v-for="error in validationErrors" class="text-danger">{{error[0]}}</li>
@@ -44,7 +54,6 @@
                         <button type="submit" class="btn btn-primary">Submit
                         </button>
                     </div>
-                </div>
             </vue-form>
         </div>
     </div>
@@ -75,6 +84,7 @@
                     id: this.id,
                     documents: [],
                     bank_id: "",
+                    wallet_address: ''
                 },
                 droppedFiles: [],
                 show_error:false,
@@ -133,6 +143,7 @@
                             this.model = {
                                 documents: [],
                                 bank_id: "",
+                                wallet_address: ''
                             };
                             e.target.reset();
                         })

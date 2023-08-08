@@ -8,7 +8,7 @@
                             <div class="timeline-badge bg-primary">
                                 <i class="fa fa-arrow-circle-down"></i>
                             </div>
-                            <div class="timeline-card p-20" v-if="model.step === 0">
+                            <div class="timeline-card p-20">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
                                         Created an Order
@@ -25,7 +25,7 @@
                             <div class="timeline-badge bg-primary">
                                 <i class="fa fa-arrow-circle-down"></i>
                             </div>
-                            <div class="timeline-card p-20" v-if="model.step >= 1">
+                            <div class="timeline-card p-20" v-if="model.step >= 0">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
                                     Send Destination Bank
@@ -49,7 +49,8 @@
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <img :src="model.document" alt="" srcset="">
+                                    <img :src="item" v-for="item in JSON.parse(model.document)" alt="" srcset="">
+                                    <p class="mt-5">Wallet: {{ model.wallet_address }}</p>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>
@@ -58,7 +59,7 @@
                             <div class="timeline-badge bg-primary">
                                 <i class="fa fa-arrow-circle-down"></i>
                             </div>
-                            <div class="timeline-card p-20" v-if="model.step >= 3">
+                            <div class="timeline-card p-20" v-if="model.step >= 2">
                                 <div class="timeline-heading p-10">
                                     <h4 class="timeline-title">
                                         Send USDT
@@ -106,6 +107,9 @@
     Vue.use(VueForm, options);
     export default {
         name: "usdt_timeline",
+        components: {
+            step1, step3
+        },
         data() {
             return {
                 formstate: {},
@@ -113,8 +117,10 @@
                     id: '',
                     amount: "",
                     bank_id: "",
+                    txn_hash: "",
                     bank: '',
                     dest_bank_detail: "",
+                    wallet_address: "",
                     document: "",
                     step: 0
                 },
@@ -124,11 +130,13 @@
         },
         methods: {
             getInfo() {
-                ApiService.get('api/usdt_purchases/' + this.model.id)
+                ApiService.get('api/usdt_orders/' + this.model.id)
                     .then(response => {
                         this.model.dest_bank_detail = response.data.dest_bank_detail;
                         this.model.amount = response.data.amount;
+                        this.model.txn_hash = response.data.txn_hash;
                         this.model.document = response.data.document;
+                        this.model.wallet_address = response.data.wallet_address;
                         this.model.step = response.data.step;
                     })
             }
