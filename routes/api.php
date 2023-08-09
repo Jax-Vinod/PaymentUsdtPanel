@@ -21,6 +21,10 @@ Route::post('login', 'AuthController@login')->name('login');
 
 Route::middleware('auth:sanctum')->group(function() {
 
+    Route::post('broadcasting/auth', function () {
+        return true;
+    });
+
     Route::post('notice/upload', 'UploadController@uploadNoticeDocument');
     Route::post('file/remove', 'UploadController@destroy');
 

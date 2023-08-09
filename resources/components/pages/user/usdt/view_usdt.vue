@@ -103,6 +103,7 @@
     import ApiService from "resources/common/api.service";
     import step1 from './step1.vue';
     import step3 from './step3.vue';
+    require("resources/common/socket.js");
 
     Vue.use(VueForm, options);
     export default {
@@ -132,17 +133,16 @@
             getInfo() {
                 ApiService.get('api/usdt_orders/' + this.model.id)
                     .then(response => {
-                        this.model.dest_bank_detail = response.data.dest_bank_detail;
-                        this.model.amount = response.data.amount;
-                        this.model.txn_hash = response.data.txn_hash;
-                        this.model.document = response.data.document;
-                        this.model.wallet_address = response.data.wallet_address;
-                        this.model.step = response.data.step;
+                        this.model = response.data;
                     })
             }
         },
         mounted: function () {
-
+            Echo.private(`UsdtOrder${this.model.id}`)
+                .listen('UsdtOrderEvent', (e) => {
+                    console.log('socket', e);
+                    this.model = e.data;
+                });
         },
         beforeMount() {
             if(this.$route.params.id > 0) {

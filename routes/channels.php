@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Broadcast;
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+Broadcast::channel('UsdtOrder{id}', function ($order, $id) {
+    return (int) $order->id === (int) $id;
+}, ['guards' => ['admin', 'web']]);

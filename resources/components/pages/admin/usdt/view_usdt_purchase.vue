@@ -113,6 +113,7 @@
     import ApiService from "resources/common/api.service";
     import miniToastr from 'mini-toastr';
     miniToastr.init();
+    require("resources/common/socket.js");
 
     import step2 from './step2.vue';
 
@@ -163,18 +164,16 @@
             getInfo() {
                 ApiService.get('admin/api/usdt_purchases/' + this.model.id)
                     .then(response => {
-                        this.model.dest_bank_detail = response.data.dest_bank_detail;
-                        this.model.bank_id = response.data.bank_id;
-                        this.model.amount = response.data.amount;
-                        this.model.document = response.data.document;
-                        this.model.wallet_address = response.data.wallet_address;
-                        this.model.txn_hash = response.data.txn_hash;
-                        this.model.step = response.data.step;
+                        this.model = response.data;
                     })
             }
         },
         mounted: function () {
-
+            Echo.private(`UsdtOrder${this.model.id}`)
+                .listen('UsdtOrderEvent', (e) => {
+                    console.log('socket', e);
+                    this.model = e.data;
+                });
         },
         beforeMount() {
             if(this.$route.params.id > 0) {

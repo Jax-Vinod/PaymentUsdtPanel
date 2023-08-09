@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UsdtOrderEvent;
 use App\Models\UsdtPurchase;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,9 @@ class UsdtOrderController extends Controller
         $order->agent_id = $request->user()->id;
         $order->status = 'In Progress';
         $order->step = 1;
+        broadcast(new UsdtOrderEvent($order));
         $order->save();
+
 
         return response()->json(true);
     }
@@ -48,7 +51,9 @@ class UsdtOrderController extends Controller
         $order->document = $request->documents;
         $order->wallet_address = $request->wallet_address;
         $order->step = 2;
+        broadcast(new UsdtOrderEvent($order));
         $order->save();
+
 
         return response()->json(true);
     }
@@ -63,7 +68,9 @@ class UsdtOrderController extends Controller
         $order = UsdtPurchase::find($request->id);
         $order->txn_hash = $request->txn_hash;
         $order->step = 3;
+        broadcast(new UsdtOrderEvent($order));
         $order->save();
+
 
         return response()->json(true);
     }
@@ -77,7 +84,9 @@ class UsdtOrderController extends Controller
         $order = UsdtPurchase::find($request->id);
         $order->status = 'Approved';
         $order->step = 4;
+        broadcast(new UsdtOrderEvent($order));
         $order->save();
+
 
         return response()->json(true);
     }
