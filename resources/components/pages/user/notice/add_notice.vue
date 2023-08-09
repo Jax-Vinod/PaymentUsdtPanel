@@ -29,6 +29,7 @@
                                                 <vue-dropzone ref="product_attachment" id="dropzone"
                                                     :options="dropzoneOptions"
                                                     @vdropzone-success="onUploaded"
+                                                    @vdropzone-sending="handleSending"
                                                     @vdropzone-removed-file="onRemoved" />
                                                 <field-messages name="document" show="$invalid && $submitted"
                                                                 class="text-danger">
@@ -74,6 +75,7 @@
         },
         data() {
             return {
+                csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 traders: [],
                 formstate: {},
                 model: {
@@ -94,6 +96,9 @@
             }
         },
         methods: {
+            handleSending(file, xhr, formData) {
+                formData.append('_token', this.csrfToken);
+            },
             onUploaded: function(file, response) {
                 console.log('upload response', response);
                 this.droppedFiles.push(file.upload.uuid);
