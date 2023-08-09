@@ -24,6 +24,7 @@
                                     <vue-dropzone ref="product_attachment" id="dropzone"
                                         :options="dropzoneOptions"
                                         @vdropzone-success="onUploaded"
+                                        @vdropzone-sending="handleSending"
                                         @vdropzone-removed-file="onRemoved" />
                                     <field-messages name="document" show="$invalid && $submitted"
                                                     class="text-danger">
@@ -78,6 +79,7 @@
         },
         data() {
             return {
+                csrfToken: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                 banks: [],
                 formstate: {},
                 model: {
@@ -95,11 +97,14 @@
                     maxFilesize: 20,
                     addRemoveLinks: true,
                     dictDefaultMessage: "<i class='fa fa-cloud-upload'></i>SELECT OR DROP FILES TO UPLOAD",
-                    headers: { "Authorization": `Bearer ${JwtService.getToken()}` }
+                    headers: { "Authorization": `Bearer ${JwtService.getToken()}`}
                 }
             }
         },
         methods: {
+            handleSending(file, xhr, formData) {
+                formData.append('_token', this.csrfToken);
+            },
             onUploaded: function(file, response) {
                 console.log('upload response', response);
                 this.droppedFiles.push(file.upload.uuid);
