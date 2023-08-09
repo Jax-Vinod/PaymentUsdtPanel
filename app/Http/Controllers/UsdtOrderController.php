@@ -43,7 +43,7 @@ class UsdtOrderController extends Controller
         $this->validate($request, [
             'id' => ['required'],
             'bank_id' => ['required'],
-            'documents' => ['required'],
+            // 'documents' => ['required'],
         ]);
 
         $order = UsdtPurchase::find($request->id);
