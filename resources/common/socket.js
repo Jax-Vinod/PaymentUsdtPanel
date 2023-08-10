@@ -7,24 +7,24 @@
 import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
-window.io = require('socket.io-client');
+// window.io = require('socket.io-client');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     forceTLS: false,
-    wsHost: '127.0.0.1',
-    // host: "https://tickets.algorithmic.review:6001",
+    // wsHost: '127.0.0.1',
+    wsHost: window.location.host,
     wsPort: 6001,
-    wssPort: 443,
-    encrypted: true,
+    // wssPort: 443,
+    encrypted: false,
     disableStats: true,
     enabledTransports: ['ws', 'wss'],
     authEndpoint :'http://127.0.0.1:8000/api/broadcasting/auth',
     auth:{
         headers: {
-            Authorization: 'Bearer '+localStorage.getItem('token'),
+            Authorization: 'Bearer '+localStorage.getItem('token')
         }
     },
 });
