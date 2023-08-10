@@ -191,4 +191,7 @@
 .bank-detail {
     white-space: break-spaces;
 }
+img {
+    width: 100%;
+}
 </style>
