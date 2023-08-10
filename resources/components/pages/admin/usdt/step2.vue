@@ -8,7 +8,7 @@
                                     <label for="name"> Bank</label>
                                     <select v-model="model.bank_id" id="bank" name="bank_id" class="form-control" size="1" required>
                                         <option value="0" selected disabled>-- Please select --</option>
-                                        <option v-for="bank in banks" :value="bank.id">{{ bank.beneficiary_name }}</option>
+                                        <option v-for="bank in banks" :value="bank.id">{{ bank.bank_name }}</option>
                                     </select>
                                     <field-messages name="bank_id" show="$invalid && $submitted"
                                                     class="text-danger">
