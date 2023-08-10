@@ -4,6 +4,7 @@ use App\Http\Controllers\NoticeResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TraderResource;
 use App\Http\Controllers\UsdtPurchaseResource;
+use Illuminate\Support\Facades\Broadcast;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::post('login', 'AuthController@login')->name('login');
 Route::middleware('auth:sanctum')->group(function() {
 
     Route::post('broadcasting/auth', function () {
-        return true;
+        return auth()->user();
     });
 
     Route::post('notice/upload', 'UploadController@uploadNoticeDocument');
@@ -35,3 +36,5 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::resource('notices', NoticeResource::class);
     Route::resource('usdt_orders', UsdtPurchaseResource::class);
 });
+
+// Broadcast::routes(['middleware' => ['auth:sanctum']]);

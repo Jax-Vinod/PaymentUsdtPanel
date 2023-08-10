@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\UsdtPurchase;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,10 +14,11 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
-});
+// Broadcast::channel('UsdtOrder.{id}', function ($user, $id) {
+//     return $user->id === UsdtPurchase::findOrNew($id)->admin_id;
+//     // return true;
+// }, ['guards' => ['admin']]);
 
-Broadcast::channel('UsdtOrder{id}', function ($order, $id) {
-    return (int) $order->id === (int) $id;
-}, ['guards' => ['admin', 'web']]);
+// Broadcast::channel('UsdtOrder.{id}', function ($user, $id) {
+//     return $user->id === UsdtPurchase::findOrNew($id)->agent_id;
+// }, ['guards' => ['web']]);

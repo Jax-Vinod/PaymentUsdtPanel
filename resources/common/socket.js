@@ -13,21 +13,21 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    // forceTLS: false,
-    forceTLS: true,
-    // wsHost: '127.0.0.1',
-    wsHost: window.location.host,
+    forceTLS: false,
+    // forceTLS: true,
+    wsHost: '127.0.0.1',
+    // wsHost: window.location.host,
     wsPort: 6001,
     wssPort: 443,
-    encrypted: true,
-    // encrypted: false,
+    // encrypted: true,
+    encrypted: false,
     disableStats: true,
     enabledTransports: ['ws', 'wss'],
-    authEndpoint :'http://127.0.0.1:8000/api/broadcasting/auth',
+    // authEndpoint :'http://127.0.0.1:8000/api/broadcasting/auth',
     auth:{
         headers: {
-            Authorization: 'Bearer '+localStorage.getItem('token')
+            Authorization: 'Bearer '+localStorage.getItem('token'),
+            Accept: "application/json"
         }
     },
 });
-console.log(window.location.host);

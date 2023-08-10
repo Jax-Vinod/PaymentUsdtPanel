@@ -138,10 +138,10 @@
             }
         },
         mounted: function () {
-            Echo.private(`UsdtOrder${this.model.id}`)
+            Echo.channel(`UsdtOrder.${this.model.id}`)
                 .listen('UsdtOrderEvent', (e) => {
                     console.log('socket', e);
-                    this.model = e.data;
+                    this.model = e.order;
                 });
         },
         beforeMount() {
