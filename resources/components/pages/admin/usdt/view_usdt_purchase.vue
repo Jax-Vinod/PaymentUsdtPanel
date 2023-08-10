@@ -191,7 +191,7 @@
 .bank-detail {
     white-space: break-spaces;
 }
-img {
+.timeline-container > img {
     width: 100%;
 }
 </style>
