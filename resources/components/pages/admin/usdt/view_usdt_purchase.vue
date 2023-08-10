@@ -32,7 +32,7 @@
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <div>{{ model.dest_bank_detail }}</div>
+                                    <p class="bank-detail">{{ model.dest_bank_detail }}</p>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>
@@ -187,3 +187,8 @@
     }
 </script>
 <style src="../../../../css/timeline.css" scoped></style>
+<style>
+.bank-detail {
+    white-space: break-spaces;
+}
+</style>
