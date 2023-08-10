@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthController@login')->name('login');
+Route::post('register', 'App\Http\Controllers\AuthController@register');
+Route::post('login', 'App\Http\Controllers\AuthController@login')->name('login');
 
 Route::middleware('auth:sanctum')->group(function() {
 
@@ -26,11 +26,11 @@ Route::middleware('auth:sanctum')->group(function() {
         return auth()->user();
     });
 
-    Route::post('notice/upload', 'UploadController@uploadNoticeDocument');
-    Route::post('file/remove', 'UploadController@destroy');
+    Route::post('notice/upload', 'App\Http\Controllers\UploadController@uploadNoticeDocument');
+    Route::post('file/remove', 'App\Http\Controllers\UploadController@destroy');
 
-    Route::post('usdt_order/step1', 'UsdtOrderController@step1');
-    Route::post('usdt_order/step3', 'UsdtOrderController@step3');
+    Route::post('usdt_order/step1', 'App\Http\Controllers\UsdtOrderController@step1');
+    Route::post('usdt_order/step3', 'App\Http\Controllers\UsdtOrderController@step3');
 
     Route::resource('traders', TraderResource::class);
     Route::resource('notices', NoticeResource::class);

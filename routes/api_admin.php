@@ -24,21 +24,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::post('register', 'AuthController@register');
-Route::post('login', 'AuthAdminController@login')->name('admin.login');
+Route::post('register', 'App\Http\Controllers\AuthController@register');
+Route::post('login', 'App\Http\Controllers\AuthAdminController@login')->name('admin.login');
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::post('logout', 'AuthController@logout');
-    Route::post('password_reset', 'AuthController@passwordReset');
-    Route::post('password_save', 'AuthController@passwordSave');
+    Route::post('logout', 'App\Http\Controllers\AuthController@logout');
+    Route::post('password_reset', 'App\Http\Controllers\AuthController@passwordReset');
+    Route::post('password_save', 'App\Http\Controllers\AuthController@passwordSave');
 
-    Route::get('transfers', 'ApiAdminController@transfers_list');
-    Route::post('transfers', 'ApiAdminController@createTransfer');
-    Route::get('payouts', 'ApiAdminController@payouts_list');
-    Route::get('notices', 'ApiAdminController@notices_list');
+    Route::get('transfers', 'App\Http\Controllers\ApiAdminController@transfers_list');
+    Route::post('transfers', 'App\Http\Controllers\ApiAdminController@createTransfer');
+    Route::get('payouts', 'App\Http\Controllers\ApiAdminController@payouts_list');
+    Route::get('notices', 'App\Http\Controllers\ApiAdminController@notices_list');
 
-    Route::get('blocked_traders', 'TraderResource@blocked_traders_list');
-    Route::get('blocked_banks', 'BankResource@blocked_banks_list');
+    Route::get('blocked_traders', 'App\Http\Controllers\TraderResource@blocked_traders_list');
+    Route::get('blocked_banks', 'App\Http\Controllers\BankResource@blocked_banks_list');
 
     Route::post('usdt_purchases/step2', [UsdtOrderController::class, 'step2']);
     Route::post('usdt_purchases/approve', [UsdtOrderController::class, 'approve']);
@@ -53,7 +53,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::resource('bank_withdrawals', BankWithdrawalResource::class);
     Route::resource('usdt_purchases', UsdtPurchaseResource::class);
 
-    Route::post('file/upload', 'UploadController@uploadFile');
-    Route::post('file/remove', 'UploadController@destroy');
+    Route::post('file/upload', 'App\Http\Controllers\UploadController@uploadFile');
+    Route::post('file/remove', 'App\Http\Controllers\UploadController@destroy');
 
 });
