@@ -43,6 +43,8 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('usdt_purchases/step2', [UsdtOrderController::class, 'step2']);
     Route::post('usdt_purchases/approve', [UsdtOrderController::class, 'approve']);
 
+    Route::get('usdt_agents', [UserResource::class, 'usdtAgents']);
+
     Route::resource('agents', UserResource::class);
     Route::resource('admins', AdminResource::class);
     Route::resource('traders', TraderResource::class);

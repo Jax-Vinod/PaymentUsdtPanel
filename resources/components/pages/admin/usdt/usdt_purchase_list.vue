@@ -127,7 +127,7 @@
                 }
             },
             getAgents() {
-                ApiService.get('admin/api/agents/')
+                ApiService.get('admin/api/usdt_agents/')
                     .then(response => {
                         this.agents = response.data.data;
                     })

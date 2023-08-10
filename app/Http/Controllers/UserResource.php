@@ -29,6 +29,11 @@ class UserResource extends Controller
         return $datatable->agents($request);
     }
 
+    public function usdtAgents()
+    {
+        return response()->json(['data' => User::where('type', 'usdt')->get()]);
+    }
+
     /**
      * Return user detail by id.
      *
