@@ -23,11 +23,11 @@ window.Echo = new Echo({
     // encrypted: false,
     disableStats: true,
     enabledTransports: ['ws', 'wss'],
-    authEndpoint :'http://127.0.0.1:8000/api/broadcasting/auth',
+    // authEndpoint :'http://127.0.0.1:8000/api/broadcasting/auth',
     auth:{
         headers: {
-            Authorization: 'Bearer '+localStorage.getItem('token')
+            Authorization: 'Bearer '+localStorage.getItem('token'),
+            Accept: "application/json"
         }
     },
 });
-console.log(window.location.host);

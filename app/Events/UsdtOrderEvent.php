@@ -37,13 +37,14 @@ class UsdtOrderEvent implements ShouldBroadcast
     public function broadcastOn()
     {
         return [
-            new PrivateChannel('UsdtOrder'.$this->order->id)
+            // new PrivateChannel('UsdtOrder'.$this->order->id),
+            new Channel('UsdtOrder.'.$this->order->id)
         ];
     }
 
     // public function broadcastAs()
     // {
-    //     return 'UsdtOrder';
+    //     return 'UsdtOrderUpdate';
     // }
 
     /**
@@ -54,7 +55,7 @@ class UsdtOrderEvent implements ShouldBroadcast
     public function broadcastWith()
     {
         return [
-            'data' => $this->order
+            'order' => $this->order
         ];
     }
 }
