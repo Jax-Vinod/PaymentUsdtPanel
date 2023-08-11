@@ -23,7 +23,7 @@ class UsdtPurchaseDataTable
             if (isset($docs)) {
                 $str = '<div class="d-flex">';
                 foreach ($docs as $doc) {
-                    $str = $str . '<img src="'.$doc.'" width="100px" />';
+                    $str = $str . '<img src="'.$doc.'" width="100px" onclick="window.open(\''.$doc.'\', \'popup\', \'width=600,height=600,scrollbars=no,resizable=no\')" />';
                 }
                 return $str;
             } else return '';
@@ -58,7 +58,7 @@ class UsdtPurchaseDataTable
             if (isset($docs)) {
                 $str = '<div class="d-flex">';
                 foreach ($docs as $doc) {
-                    $str = $str . '<img src="'.$doc.'" width="100px" />';
+                    $str = $str . '<img src="'.$doc.'" width="100px" onclick="window.open(\''.$doc.'\', \'popup\', \'width=600,height=600,scrollbars=no,resizable=no\')" />';
                 }
                 return $str;
             } else return '';
@@ -93,7 +93,7 @@ class UsdtPurchaseDataTable
             if (isset($docs)) {
                 $str = '<div class="d-flex">';
                 foreach ($docs as $doc) {
-                    $str = $str . '<img src="'.$doc.'" width="100px" />';
+                    $str = $str . '<img src="'.$doc.'" width="100px" onclick="window.open(\''.$doc.'\', \'popup\', \'width=600,height=600,scrollbars=no,resizable=no\')" />';
                 }
                 return $str;
             } else return '';
