@@ -21,9 +21,10 @@
         },
         data() {
             return {
-                tableData: ['Date', 'Manager', 'Amount', 'Source Bank', 'Dest Bank', 'Document', 'Status', 'Action'],
+                tableData: ['Date', 'Order No', 'Manager', 'Amount', 'Source Bank', 'Dest Bank', 'Document', 'Status', 'Action'],
                 columndata: [
                     {data: 'created_at', name: 'created_at', sortable: true},
+                    {data: 'order_no', name: 'order_no', sortable: false},
                     {data: 'admin', name: 'admin', sortable: false},
                     {data: 'amount', name: 'amount', sortable: true},
                     {data: 'source_bank', name: 'source_bank', sortable: false},
@@ -36,7 +37,7 @@
                     "render": function(data, type, row) {
                             return "<a class='btn btn-info clickable' href='#/usdt_order/view/" + row.id + "'><i class='fa fa-eye'> </i></a> ";
                         },
-                        "targets": 7
+                        "targets": 8
                     }
                 ],
             }

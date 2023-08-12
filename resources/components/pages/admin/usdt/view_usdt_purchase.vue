@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-12">
-            <b-card header="USDT Purchase" header-tag="h4" class="bg-primary-card">
+            <b-card :header="'Order: '+ model.order_no " header-tag="h4" class="bg-primary-card">
                 <div class="timeline-container pt-4 pb-2 mb-3">
                     <ul class="timeline ">
                         <li class="timeline-left" >
@@ -129,6 +129,7 @@
                 model: {
                     id: '',
                     amount: "",
+                    order_no: '',
                     bank_id: "",
                     bank: '',
                     dest_bank_detail: "",
