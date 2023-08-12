@@ -51,6 +51,7 @@
                                     <step2 :id="model.id" v-if="model.bank_id === null"></step2>
                                     <div v-else>
                                         <img :src="item" v-for="item in JSON.parse(model.document)" alt="" srcset="">
+                                        <p class="mt-5">Wallet: {{ model.wallet_address }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +68,7 @@
                                     </h4>
                                 </div>
                                 <div class="timeline-body p-10">
-                                    <div >Txn.Hash: {{ model.txn_hash }}</div>
+                                    <div >Txn.Hash: <a :href="model.txn_hash">{{ model.txn_hash }}</a> </div>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>

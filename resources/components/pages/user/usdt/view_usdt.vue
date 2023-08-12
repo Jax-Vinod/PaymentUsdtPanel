@@ -67,7 +67,7 @@
                                 </div>
                                 <div class="timeline-body p-10">
                                     <step3 :id="model.id" v-if="model.txn_hash === null"></step3>
-                                    <div v-else>Txn.Hash: {{ model.txn_hash }}</div>
+                                    <div v-else>Txn.Hash: <a :href="model.txn_hash">{{ model.txn_hash }}</a> </div>
                                 </div>
                             </div>
                             <div class="p-20" v-else></div>
