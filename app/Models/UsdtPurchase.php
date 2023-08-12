@@ -19,6 +19,7 @@ class UsdtPurchase extends Model
         'txn_hash',
         'wallet_address',
         'status',
+        'order_no',
         'step'
     ];
 

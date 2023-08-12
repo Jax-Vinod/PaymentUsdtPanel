@@ -30,10 +30,10 @@ class NoticeDataTable
             return $str;
         })
         ->addColumn('agent', function ($item) {
-            return $item->agent->name;
+            return $item->agent ? $item->agent->name : 'No agent';
         })
         ->addColumn('trader', function ($item) {
-            return $item->trader->name;
+            return $item->trader ? $item->trader->name : 'No trader';
         })
         ->rawColumns(['document'])
         ->removeColumn(['trader_id', 'agent_id']);
@@ -62,7 +62,7 @@ class NoticeDataTable
             return $str;
         })
         ->addColumn('trader', function ($item) {
-            return $item->trader->name;
+            return $item->trader ? $item->trader->name : 'No trader';
         })
         ->rawColumns(['document'])
         ->removeColumn(['trader_id', 'agent_id']);

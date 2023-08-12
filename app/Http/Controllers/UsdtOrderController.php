@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Events\UsdtOrderEvent;
+use App\Models\Admin;
 use App\Models\UsdtPurchase;
+use App\Notifications\TelegramNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class UsdtOrderController extends Controller
 {
@@ -34,6 +38,14 @@ class UsdtOrderController extends Controller
         $order->save();
         broadcast(new UsdtOrderEvent($order));
 
+        try {
+            $content = '';
+            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+        } catch (\Throwable $th) {
+            Log::error('telegram error '.$th->getMessage());
+            //throw $th;
+        }
+
 
         return response()->json(true);
     }
@@ -54,6 +66,14 @@ class UsdtOrderController extends Controller
         $order->save();
         broadcast(new UsdtOrderEvent($order));
 
+        try {
+            $content = '';
+            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+        } catch (\Throwable $th) {
+            Log::error('telegram error '.$th->getMessage());
+            //throw $th;
+        }
+
 
         return response()->json(true);
     }
@@ -71,6 +91,14 @@ class UsdtOrderController extends Controller
         $order->save();
         broadcast(new UsdtOrderEvent($order));
 
+        try {
+            $content = '';
+            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+        } catch (\Throwable $th) {
+            Log::error('telegram error '.$th->getMessage());
+            //throw $th;
+        }
+
 
         return response()->json(true);
     }
@@ -86,6 +114,14 @@ class UsdtOrderController extends Controller
         $order->step = 4;
         $order->save();
         broadcast(new UsdtOrderEvent($order));
+
+        try {
+            $content = 'Approved the order';
+            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+        } catch (\Throwable $th) {
+            Log::error('telegram error '.$th->getMessage());
+            //throw $th;
+        }
 
 
         return response()->json(true);

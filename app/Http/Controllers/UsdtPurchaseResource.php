@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\DataTables\UsdtPurchaseDataTable;
 use App\Models\UsdtPurchase;
+use App\Models\User;
+use App\Notifications\TelegramNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class UsdtPurchaseResource extends Controller
 {
@@ -47,13 +51,22 @@ class UsdtPurchaseResource extends Controller
     {
         $this->validate($request, [
             'amount' => ['required'],
+            'agent_id' => 'required'
         ]);
 
         $data = $request->all();
         $data['admin_id'] = $request->user()->id;
         $data['status'] = 'Created';
+        $data['order_no'] = 'UO '.time();
 
         $item = UsdtPurchase::create($data);
+        try {
+            $content = 'Requested USDT to you.';
+            Notification::sendNow(User::find($request->agent_id), new TelegramNotification($content));
+        } catch (\Throwable $th) {
+            Log::error('telegram error '.$th->getMessage());
+            //throw $th;
+        }
         return response()->json(['id' => $item->id]);
     }
 
