@@ -35,6 +35,19 @@
                                             </validate>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <validate tag="div">
+                                                <label for="telegram_chat_id" class="font-weight-bold"> Telegram Chat ID (For USDT Agent)</label>
+                                                <input v-model="model.telegram_chat_id" id="telegram_chat_id" name="telegram_chat_id" type="text"
+                                                       required autofocus placeholder="Telegram Chat ID" class="form-control"/>
+                                                <field-messages name="telegram_chat_id" show="$invalid && $submitted"
+                                                                class="text-danger">
+                                                    <div slot="required">Telegram chat id is a required field</div>
+                                                </field-messages>
+                                            </validate>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-12 mt-2">
                                         <div class="custom-controls-stacked">
                                             <b-form-radio-group v-model="model.type" :options="agenTypes" name="type">
@@ -73,10 +86,11 @@
             return {
                 formstate: {},
                 model: {
-                    user_id: 0,
+                    id: 0,
                     name: "",
                     email: "",
                     type: '',
+                    telegram_chat_id: ''
                 },
                 show_error: false,
                 validationErrors: [],
@@ -91,7 +105,7 @@
                 if (this.formstate.$invalid) {
                     return;
                 } else {
-                    ApiService.update('admin/api/agents', this.model.user_id, this.model)
+                    ApiService.update('admin/api/agents', this.model.id, this.model)
                         .then(data => {
                             this.show_error = false;
                             miniToastr.success("Agent has been updated successfully", "Success")
@@ -111,17 +125,15 @@
                 }
             },
             getUserInfo() {
-                ApiService.get('admin/api/agents/' + this.model.user_id)
+                ApiService.get('admin/api/agents/' + this.model.id)
                     .then(response => {
-                        this.model.email = response.data.email;
-                        this.model.name = response.data.name;
-                        this.model.type = response.data.type;
+                        this.model = response.data;
                     })
             }
         },
         beforeMount() {
             if(this.$route.params.user_id > 0) {
-                this.model.user_id = this.$route.params.user_id;
+                this.model.id = this.$route.params.user_id;
                 this.getUserInfo();
             }
         },

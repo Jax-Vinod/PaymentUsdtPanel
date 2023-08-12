@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Events\UsdtOrderEvent;
-use App\Models\Admin;
 use App\Models\UsdtPurchase;
 use App\Notifications\TelegramNotification;
 use Illuminate\Http\Request;
@@ -39,8 +38,8 @@ class UsdtOrderController extends Controller
         broadcast(new UsdtOrderEvent($order));
 
         try {
-            $content = '';
-            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+            $content = 'Agent sent a bank detail for order: '.$order->order_no;
+            Notification::sendNow($order->admin, new TelegramNotification($content));
         } catch (\Throwable $th) {
             Log::error('telegram error '.$th->getMessage());
             //throw $th;
@@ -67,8 +66,8 @@ class UsdtOrderController extends Controller
         broadcast(new UsdtOrderEvent($order));
 
         try {
-            $content = '';
-            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+            $content = 'Paid for order: '.$order->order_no;
+            Notification::sendNow($order->agent, new TelegramNotification($content));
         } catch (\Throwable $th) {
             Log::error('telegram error '.$th->getMessage());
             //throw $th;
@@ -92,8 +91,8 @@ class UsdtOrderController extends Controller
         broadcast(new UsdtOrderEvent($order));
 
         try {
-            $content = '';
-            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+            $content = 'Agent sent USDT for order: '.$order->order_no;
+            Notification::sendNow($order->admin, new TelegramNotification($content));
         } catch (\Throwable $th) {
             Log::error('telegram error '.$th->getMessage());
             //throw $th;
@@ -116,8 +115,8 @@ class UsdtOrderController extends Controller
         broadcast(new UsdtOrderEvent($order));
 
         try {
-            $content = 'Approved the order';
-            Notification::sendNow(Admin::first(), new TelegramNotification($content));
+            $content = 'Approved the order: '.$order->order_no;
+            Notification::sendNow($order->agent, new TelegramNotification($content));
         } catch (\Throwable $th) {
             Log::error('telegram error '.$th->getMessage());
             //throw $th;

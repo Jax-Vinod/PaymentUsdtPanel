@@ -34,4 +34,9 @@ class UsdtPurchase extends Model
     {
         return $this->belongsTo('App\Models\Admin');
     }
+
+    public function agent()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }
