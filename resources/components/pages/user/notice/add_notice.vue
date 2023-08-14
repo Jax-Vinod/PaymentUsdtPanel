@@ -145,6 +145,11 @@
                             };
                             e.target.reset();
                         })
+                        .then(() => {
+                            setTimeout(()=>{
+                                this.$router.push("/notice");
+                            },500);
+                        })
                         .catch(error => {
                             if (error.response.status == 422) {
                                 this.validationErrors = error.response.data.errors;
