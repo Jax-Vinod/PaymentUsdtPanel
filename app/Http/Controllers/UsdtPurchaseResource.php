@@ -28,7 +28,11 @@ class UsdtPurchaseResource extends Controller
      */
     public function index(Request $request, UsdtPurchaseDataTable $datatable)
     {
-        return $datatable->render($request);
+        if (isset($request->user()->role)) {
+            return $datatable->render($request);
+        } else {
+            return $datatable->renderByAgent($request, $request->user()->id);
+        }
     }
 
     /**
