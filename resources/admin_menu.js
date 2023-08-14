@@ -27,11 +27,11 @@ const menu_items = [
         link: '/admin/usdt_purchase',
         icon: ' fa fa-btc'
     },
-    // {
-    //     name: 'Payout',
-    //     link: '/admin/payout',
-    //     icon: ' fa fa-money'
-    // },
+    {
+        name: 'Payout',
+        link: '/admin/payout',
+        icon: ' fa fa-money'
+    },
     // {
     //     name: 'India Payments',
     //     link: '/admin/india_payments',

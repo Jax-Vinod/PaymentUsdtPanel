@@ -17,11 +17,11 @@ class PayoutDataTable
         ->editColumn('created_at', function ($item) {
             return substr($item->created_at, 0, 10);
         })
-        ->addColumn('manager', function ($item) {
-            return $item->admin->name;
+        ->addColumn('admin', function ($item) {
+            return $item->admin ? $item->admin->name : 'N/A';
         })
         ->addColumn('bank', function ($item) {
-            return $item->bank->bank_name;
+            return $item->bank ? $item->bank->bank_name : 'N/A';
         })
         ->removeColumn(['admin_id', 'bank_id']);
 

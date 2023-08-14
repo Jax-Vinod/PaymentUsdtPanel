@@ -43,11 +43,17 @@ const layout = [{
     }
 }, {
     path: 'payout',
-    component: resolve => require(['pages/admin/payout_list'], resolve),
+    component: resolve => require(['pages/admin/payout/payout_list'], resolve),
     meta: {
         title: "Payout",
     }
 
+}, {
+    path: 'payout/new',
+    component: resolve => require(['pages/admin/payout/new_payout'], resolve),
+    meta: {
+        title: "New Payout",
+    }
 }, {
     path: 'chargeback',
     component: resolve => require(['pages/admin/loses/chargeback'], resolve),

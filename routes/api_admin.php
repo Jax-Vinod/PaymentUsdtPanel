@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminResource;
 use App\Http\Controllers\BankResource;
 use App\Http\Controllers\BankWithdrawalResource;
 use App\Http\Controllers\ChargebackResource;
+use App\Http\Controllers\PayoutResource;
 use App\Http\Controllers\UserResource;
 use App\Http\Controllers\TraderResource;
 use App\Http\Controllers\TraderTopupResource;
@@ -34,7 +35,6 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::get('transfers', 'App\Http\Controllers\ApiAdminController@transfers_list');
     Route::post('transfers', 'App\Http\Controllers\ApiAdminController@createTransfer');
-    Route::get('payouts', 'App\Http\Controllers\ApiAdminController@payouts_list');
     Route::get('notices', 'App\Http\Controllers\ApiAdminController@notices_list');
 
     Route::get('blocked_traders', 'App\Http\Controllers\TraderResource@blocked_traders_list');
@@ -54,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::resource('trader_withdrawals', TraderWithdrawalResource::class);
     Route::resource('bank_withdrawals', BankWithdrawalResource::class);
     Route::resource('usdt_purchases', UsdtPurchaseResource::class);
+    Route::resource('payouts', PayoutResource::class);
 
     Route::post('file/upload', 'App\Http\Controllers\UploadController@uploadFile');
     Route::post('file/remove', 'App\Http\Controllers\UploadController@destroy');

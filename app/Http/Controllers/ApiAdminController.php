@@ -47,11 +47,6 @@ class ApiAdminController extends Controller
 
     }
 
-    public function payouts_list(Request $request, PayoutDataTable $table)
-    {
-        return $table->render($request);
-    }
-
     public function notices_list(Request $request, NoticeDataTable $table)
     {
         return $table->renderByAdmin($request);
