@@ -18,10 +18,10 @@ class TraderTransferDataTable
             return substr($item->created_at, 0, 10);
         })
         ->addColumn('bank', function ($item) {
-            return $item->bank->bank_name;
+            return $item->bank ? $item->bank->bank_name: 'N/A';
         })
         ->addColumn('trader', function ($item) {
-            return $item->trader->name;
+            return $item->trader ? $item->trader->name : 'N/A';
         })
         ->removeColumn(['trader_id', 'bank_id']);
 
