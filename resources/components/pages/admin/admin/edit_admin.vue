@@ -89,7 +89,7 @@
                         .then(() => {
                             setTimeout(()=>{
                                 this.$router.push("/admin/admins");
-                            },2000);
+                            },500);
                         })
                         .catch(error => {
                             if (error.response.status == 422) {
